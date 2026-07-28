@@ -322,22 +322,24 @@ function Capabilities() {
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-2">
+        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
           {items.map((it) => (
             <article
               key={it.code}
               className="group relative bg-background p-10 transition-colors hover:bg-surface md:p-14"
             >
-              <div className="flex items-start justify-between">
-                <span className="font-mono text-[11px] tracking-[0.22em] text-primary">
-                  {it.code} / CAP
+              <div className="flex items-baseline justify-between">
+                <span className="font-serif text-[3.25rem] font-light leading-none text-primary/90">
+                  {it.code}
                 </span>
-                <span className="text-muted-foreground opacity-0 transition-all group-hover:opacity-100">
-                  →
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                  Capacidad
                 </span>
               </div>
-              <h3 className="mt-16 font-serif text-2xl font-normal leading-snug md:text-[28px]">
+              <div className="mt-10 h-px w-10 bg-primary/70" />
+              <h3 className="mt-6 font-serif text-2xl font-normal leading-[1.2] md:text-[28px]">
                 {it.title}
+
               </h3>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
                 {it.body}
