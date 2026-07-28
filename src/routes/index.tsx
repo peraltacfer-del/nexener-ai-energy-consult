@@ -157,33 +157,23 @@ function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "linear-gradient(var(--color-border-strong) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-strong) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
+            backgroundSize: "88px 88px",
           }}
         />
       </div>
 
       <div className="container-x relative flex min-h-[92vh] flex-col justify-end pb-20 pt-40">
         <div className="rise max-w-4xl">
-          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/5 px-3 py-1">
-            <span className="relative flex size-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
-            </span>
-            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
-              Global AI Energy Intelligence · MMXXV
-            </span>
-          </div>
+          <SectionMark index="00" label="Global AI Energy Intelligence" />
 
-          <h1 className="text-balance font-serif text-[clamp(2.75rem,7vw,6.25rem)] font-light leading-[0.98] tracking-tight">
+          <h1 className="mt-8 text-balance font-serif text-[clamp(2.75rem,7vw,6.25rem)] font-light leading-[0.98] tracking-[-0.015em]">
             Inteligencia artificial para
             <br />
-            la infraestructura{" "}
-            <em className="not-italic font-normal text-primary">eléctrica</em>{" "}
-            del mundo.
+            la infraestructura <Accent>eléctrica</Accent> del mundo.
           </h1>
 
           <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
@@ -202,9 +192,9 @@ function Hero() {
             </a>
             <a
               href="#capacidades"
-              className="inline-flex h-12 items-center gap-3 rounded-full border border-border-strong px-6 font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-foreground/90 transition-colors hover:bg-surface"
+              className="group inline-flex h-12 items-center gap-3 rounded-full border border-border-strong px-6 font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-foreground/90 transition-colors hover:bg-surface"
             >
-              <span className="grid size-6 place-items-center rounded-full border border-border-strong">
+              <span className="grid size-6 place-items-center rounded-full border border-border-strong text-[10px]">
                 ↓
               </span>
               Explorar capacidades
@@ -214,20 +204,52 @@ function Hero() {
 
         <div className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-8 md:flex-row md:items-center md:justify-between">
           <p className="eyebrow">Presencia operativa</p>
-          <div className="flex flex-wrap gap-x-10 gap-y-3 font-mono text-[12px] text-muted-foreground">
-            <span>Madrid</span>
-            <span>Londres</span>
-            <span>Nueva York</span>
-            <span>Toronto</span>
-            <span>Ciudad de México</span>
-            <span>São Paulo</span>
-            <span>Santiago</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[12px] text-muted-foreground">
+            {["Madrid","Londres","Nueva York","Toronto","Ciudad de México","São Paulo","Santiago"].map((c, i, arr) => (
+              <span key={c} className="flex items-center gap-6">
+                <span>{c}</span>
+                {i < arr.length - 1 && <span className="text-primary/60">+</span>}
+              </span>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+function Accent({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block italic font-serif font-normal text-primary">
+      {children}
+      <svg
+        aria-hidden
+        viewBox="0 0 300 14"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute left-0 right-0 -bottom-1 h-[0.35em] w-full text-primary/70"
+      >
+        <path
+          d="M2 8 C 60 2, 140 12, 220 5 S 296 8, 298 6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
+  );
+}
+
+function SectionMark({ index, label }: { index: string; label: string }) {
+  return (
+    <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+      <span className="text-primary">N.º {index}</span>
+      <span aria-hidden className="h-px w-8 bg-border-strong" />
+      <span>{label}</span>
+    </div>
+  );
+}
+
 
 function TrustBar() {
   const clients = [
