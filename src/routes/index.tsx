@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import heroGrid from "@/assets/hero-grid.jpg";
 import controlRoom from "@/assets/control-room.jpg";
 import substation from "@/assets/substation.jpg";
+import nexenerMark from "@/assets/nexener-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,16 +48,27 @@ function Landing() {
 }
 
 function Nav() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("light", theme === "light");
+  }, [theme]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-xl">
-      <div className="container-x flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2.5">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/75 backdrop-blur-xl">
+      <div className="container-x flex h-18 items-center justify-between py-3">
+        <a href="#top" className="flex items-center gap-3">
           <Logo />
-          <span className="font-mono text-[13px] font-semibold tracking-[0.28em]">
-            NEXENER
+          <span className="hidden flex-col leading-tight sm:flex">
+            <span className="font-sans text-[18px] font-medium tracking-[0.42em] text-foreground">
+              NEXENER
+            </span>
+            <span className="font-mono text-[9px] tracking-[0.22em] text-muted-foreground">
+              Consultoría Energética e IA
+            </span>
           </span>
         </a>
-        <nav className="hidden gap-8 text-[13px] text-muted-foreground md:flex">
+        <nav className="hidden gap-8 text-[13px] text-muted-foreground lg:flex">
           <a href="#capacidades" className="hover:text-foreground transition-colors">
             Capacidades
           </a>
@@ -69,14 +82,27 @@ function Nav() {
             Insights
           </a>
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="Cambiar tema"
+            title={theme === "dark" ? "Modo diurno" : "Modo nocturno"}
+            className="grid size-9 place-items-center rounded-full border border-border-strong/60 text-foreground/80 transition-colors hover:bg-surface hover:text-foreground"
+          >
+            {theme === "dark" ? (
+              <SunIcon className="size-4" />
+            ) : (
+              <MoonIcon className="size-4" />
+            )}
+          </button>
           <span className="hidden font-mono text-[10px] tracking-[0.2em] text-muted-foreground sm:block">
-            ES <span className="mx-1 text-border-strong">/</span>{" "}
+            ES <span className="mx-1">/</span>
             <span className="opacity-60">EN</span>
           </span>
           <a
             href="#contacto"
-            className="group inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+            className="group hidden items-center gap-2 rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground sm:inline-flex"
           >
             Solicitar briefing
             <span className="transition-transform group-hover:translate-x-0.5">
@@ -89,11 +115,32 @@ function Nav() {
   );
 }
 
-function Logo() {
+function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className="grid size-7 place-items-center rounded-sm border border-primary/60 bg-primary/10">
-      <span className="block size-2 rotate-45 bg-primary" />
-    </span>
+    <img
+      src={nexenerMark}
+      alt="NEXENER"
+      width={64}
+      height={64}
+      className={`h-9 w-auto ${className}`}
+    />
+  );
+}
+
+function SunIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  );
+}
+
+function MoonIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
   );
 }
 
