@@ -39,6 +39,7 @@ function Landing() {
       <Capabilities />
       <Metrics />
       <Sectors />
+      <Manifesto />
       <Methodology />
       <Insights />
       <ContactCTA />
@@ -46,6 +47,7 @@ function Landing() {
     </div>
   );
 }
+
 
 function Nav() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
@@ -157,33 +159,23 @@ function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
         <div
-          className="absolute inset-0 opacity-[0.08]"
+          className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "linear-gradient(var(--color-border-strong) 1px, transparent 1px), linear-gradient(90deg, var(--color-border-strong) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
+            backgroundSize: "88px 88px",
           }}
         />
       </div>
 
       <div className="container-x relative flex min-h-[92vh] flex-col justify-end pb-20 pt-40">
         <div className="rise max-w-4xl">
-          <div className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-primary/25 bg-primary/5 px-3 py-1">
-            <span className="relative flex size-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
-              <span className="relative inline-flex size-1.5 rounded-full bg-primary" />
-            </span>
-            <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-primary">
-              Global AI Energy Intelligence · MMXXV
-            </span>
-          </div>
+          <SectionMark index="00" label="Global AI Energy Intelligence" />
 
-          <h1 className="text-balance font-serif text-[clamp(2.75rem,7vw,6.25rem)] font-light leading-[0.98] tracking-tight">
+          <h1 className="mt-8 text-balance font-serif text-[clamp(2.75rem,7vw,6.25rem)] font-light leading-[0.98] tracking-[-0.015em]">
             Inteligencia artificial para
             <br />
-            la infraestructura{" "}
-            <em className="not-italic font-normal text-primary">eléctrica</em>{" "}
-            del mundo.
+            la infraestructura <Accent>eléctrica</Accent> del mundo.
           </h1>
 
           <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
@@ -202,9 +194,9 @@ function Hero() {
             </a>
             <a
               href="#capacidades"
-              className="inline-flex h-12 items-center gap-3 rounded-full border border-border-strong px-6 font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-foreground/90 transition-colors hover:bg-surface"
+              className="group inline-flex h-12 items-center gap-3 rounded-full border border-border-strong px-6 font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-foreground/90 transition-colors hover:bg-surface"
             >
-              <span className="grid size-6 place-items-center rounded-full border border-border-strong">
+              <span className="grid size-6 place-items-center rounded-full border border-border-strong text-[10px]">
                 ↓
               </span>
               Explorar capacidades
@@ -214,20 +206,52 @@ function Hero() {
 
         <div className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-8 md:flex-row md:items-center md:justify-between">
           <p className="eyebrow">Presencia operativa</p>
-          <div className="flex flex-wrap gap-x-10 gap-y-3 font-mono text-[12px] text-muted-foreground">
-            <span>Madrid</span>
-            <span>Londres</span>
-            <span>Nueva York</span>
-            <span>Toronto</span>
-            <span>Ciudad de México</span>
-            <span>São Paulo</span>
-            <span>Santiago</span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[12px] text-muted-foreground">
+            {["Madrid","Londres","Nueva York","Toronto","Ciudad de México","São Paulo","Santiago"].map((c, i, arr) => (
+              <span key={c} className="flex items-center gap-6">
+                <span>{c}</span>
+                {i < arr.length - 1 && <span className="text-primary/60">+</span>}
+              </span>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
+
+function Accent({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block italic font-serif font-normal text-primary">
+      {children}
+      <svg
+        aria-hidden
+        viewBox="0 0 300 14"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute left-0 right-0 -bottom-1 h-[0.35em] w-full text-primary/70"
+      >
+        <path
+          d="M2 8 C 60 2, 140 12, 220 5 S 296 8, 298 6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
+      </svg>
+    </span>
+  );
+}
+
+function SectionMark({ index, label }: { index: string; label: string }) {
+  return (
+    <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+      <span className="text-primary">N.º {index}</span>
+      <span aria-hidden className="h-px w-8 bg-border-strong" />
+      <span>{label}</span>
+    </div>
+  );
+}
+
 
 function TrustBar() {
   const clients = [
@@ -240,15 +264,19 @@ function TrustBar() {
   ];
   return (
     <section className="border-y border-border bg-surface/40">
-      <div className="container-x flex flex-wrap items-center gap-x-12 gap-y-6 py-8">
-        <p className="eyebrow">Confían en NEXENER</p>
-        <div className="flex flex-1 flex-wrap items-center gap-x-10 gap-y-4">
-          {clients.map((c) => (
-            <span
-              key={c}
-              className="font-mono text-[13px] font-medium tracking-[0.18em] text-muted-foreground/80"
-            >
-              {c}
+      <div className="container-x flex flex-col gap-6 py-10 md:flex-row md:items-center md:gap-12">
+        <p className="shrink-0 font-serif text-sm italic text-muted-foreground">
+          En colaboración con operadores en cuatro continentes —
+        </p>
+        <div className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-4">
+          {clients.map((c, i) => (
+            <span key={c} className="flex items-center gap-8">
+              <span className="font-serif text-[15px] tracking-[0.12em] text-foreground/70">
+                {c}
+              </span>
+              {i < clients.length - 1 && (
+                <span aria-hidden className="h-3 w-px bg-border-strong/60" />
+              )}
             </span>
           ))}
         </div>
@@ -256,6 +284,7 @@ function TrustBar() {
     </section>
   );
 }
+
 
 function Capabilities() {
   const items = [
@@ -286,13 +315,13 @@ function Capabilities() {
       <div className="container-x">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="eyebrow mb-6">Capacidades núcleo</p>
-            <h2 className="text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-              Consultoría de{" "}
-              <em className="not-italic text-primary">nueva generación</em>{" "}
-              construida sobre IA propietaria.
+            <SectionMark index="01" label="Capacidades núcleo" />
+            <h2 className="mt-6 text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+              Consultoría de <Accent>nueva generación</Accent> construida sobre
+              IA propietaria.
             </h2>
           </div>
+
           <p className="max-w-md text-muted-foreground">
             Cada intervención combina un partner senior con equipos de data
             science aplicados al negocio eléctrico. Sin outsourcing, sin
@@ -300,22 +329,24 @@ function Capabilities() {
           </p>
         </div>
 
-        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-2">
+        <div className="mt-20 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
           {items.map((it) => (
             <article
               key={it.code}
               className="group relative bg-background p-10 transition-colors hover:bg-surface md:p-14"
             >
-              <div className="flex items-start justify-between">
-                <span className="font-mono text-[11px] tracking-[0.22em] text-primary">
-                  {it.code} / CAP
+              <div className="flex items-baseline justify-between">
+                <span className="font-serif text-[3.25rem] font-light leading-none text-primary/90">
+                  {it.code}
                 </span>
-                <span className="text-muted-foreground opacity-0 transition-all group-hover:opacity-100">
-                  →
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                  Capacidad
                 </span>
               </div>
-              <h3 className="mt-16 font-serif text-2xl font-normal leading-snug md:text-[28px]">
+              <div className="mt-10 h-px w-10 bg-primary/70" />
+              <h3 className="mt-6 font-serif text-2xl font-normal leading-[1.2] md:text-[28px]">
                 {it.title}
+
               </h3>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
                 {it.body}
@@ -401,11 +432,11 @@ function Sectors() {
           </div>
         </div>
         <div>
-          <p className="eyebrow mb-6">Cobertura sectorial</p>
-          <h2 className="text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-            De la turbina al medidor. Una sola{" "}
-            <em className="not-italic text-primary">capa de inteligencia</em>.
+          <SectionMark index="02" label="Cobertura sectorial" />
+          <h2 className="mt-6 text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+            De la turbina al medidor. Una sola <Accent>capa de inteligencia</Accent>.
           </h2>
+
           <p className="mt-6 max-w-lg text-muted-foreground">
             Rompemos los silos entre generación, transmisión y comercialización
             aplicando una arquitectura unificada de datos que refleja toda la
@@ -436,7 +467,41 @@ function Sectors() {
   );
 }
 
+function Manifesto() {
+  return (
+    <section className="relative border-y border-border py-32">
+      <div className="container-x grid gap-12 md:grid-cols-[auto_1fr] md:gap-20">
+        <div className="flex flex-col">
+          <span className="font-serif text-[7rem] leading-[0.7] text-primary/80">
+            &ldquo;
+          </span>
+          <span className="mt-6 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+            Nota del socio director
+          </span>
+        </div>
+        <blockquote className="max-w-3xl">
+          <p className="text-balance font-serif text-3xl font-light leading-[1.25] tracking-[-0.005em] md:text-[2.5rem]">
+            La red eléctrica del próximo siglo no se construirá con más cobre.
+            Se construirá con <Accent>modelos que anticipen</Accent> cada
+            fluctuación antes de que ocurra. Ese es nuestro oficio.
+          </p>
+          <footer className="mt-10 flex items-center gap-4 border-t border-border pt-6">
+            <div className="grid size-10 place-items-center rounded-full border border-border-strong font-serif text-[13px] italic text-muted-foreground">
+              MR
+            </div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="text-foreground">Mateo Reinhardt</div>
+              <div>Socio director · NEXENER Global</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+  );
+}
+
 function Methodology() {
+
   const steps = [
     {
       n: "I",
@@ -467,12 +532,13 @@ function Methodology() {
       <div className="container-x">
         <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow mb-6">Metodología</p>
-            <h2 className="max-w-2xl text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
+            <SectionMark index="03" label="Metodología" />
+            <h2 className="mt-6 max-w-2xl text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
               Un marco de trabajo probado en las redes eléctricas más{" "}
-              <em className="not-italic text-primary">complejas</em> del planeta.
+              <Accent>complejas</Accent> del planeta.
             </h2>
           </div>
+
         </div>
 
         <div className="hairline mb-16" />
@@ -526,11 +592,12 @@ function Insights() {
       <div className="container-x">
         <div className="mb-16 flex items-end justify-between">
           <div>
-            <p className="eyebrow mb-6">Publicaciones recientes</p>
-            <h2 className="max-w-xl text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-              Investigación aplicada, no marketing.
+            <SectionMark index="04" label="Publicaciones recientes" />
+            <h2 className="mt-6 max-w-xl text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+              Investigación aplicada, <span className="italic font-serif text-muted-foreground">no marketing.</span>
             </h2>
           </div>
+
           <a
             href="#"
             className="hidden font-mono text-[11px] uppercase tracking-[0.22em] text-primary hover:underline md:inline"
@@ -586,11 +653,11 @@ function ContactCTA() {
 
       <div className="container-x grid gap-16 py-32 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <div>
-          <p className="eyebrow mb-6">Iniciar conversación</p>
-          <h2 className="max-w-xl text-balance font-serif text-5xl font-light leading-[1.05] md:text-6xl">
-            Escale su infraestructura para la{" "}
-            <em className="not-italic text-primary">era autónoma</em>.
+          <SectionMark index="05" label="Iniciar conversación" />
+          <h2 className="mt-6 max-w-xl text-balance font-serif text-5xl font-light leading-[1.02] tracking-[-0.015em] md:text-6xl">
+            Escale su infraestructura para la <Accent>era autónoma</Accent>.
           </h2>
+
           <p className="mt-8 max-w-lg text-muted-foreground">
             Nuestros partners regionales responden en menos de 48 horas.
             Coordinamos una sesión ejecutiva confidencial para explorar el
