@@ -491,12 +491,13 @@ function Methodology() {
       <div className="container-x">
         <div className="mb-20 flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow mb-6">Metodología</p>
-            <h2 className="max-w-2xl text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
+            <SectionMark index="03" label="Metodología" />
+            <h2 className="mt-6 max-w-2xl text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
               Un marco de trabajo probado en las redes eléctricas más{" "}
-              <em className="not-italic text-primary">complejas</em> del planeta.
+              <Accent>complejas</Accent> del planeta.
             </h2>
           </div>
+
         </div>
 
         <div className="hairline mb-16" />
