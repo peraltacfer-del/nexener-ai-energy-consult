@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "NEXENER — Consultoría global de IA para el sector eléctrico" },
+      { name: "description", content: "NEXENER integra inteligencia artificial y estrategia energética para operadores, generadores y utilities del sector eléctrico en América y Europa." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "NEXENER — Consultoría global de IA para el sector eléctrico" },
+      { property: "og:description", content: "NEXENER integra inteligencia artificial y estrategia energética para operadores, generadores y utilities del sector eléctrico en América y Europa." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "NEXENER — Consultoría global de IA para el sector eléctrico" },
+      { name: "twitter:description", content: "NEXENER integra inteligencia artificial y estrategia energética para operadores, generadores y utilities del sector eléctrico en América y Europa." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7048ee7f-43e3-4fae-88f4-18b8ae3d74ec/id-preview-e3134d64--86d5f3a7-fac2-4486-9016-5780ef08260f.lovable.app-1785211267587.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7048ee7f-43e3-4fae-88f4-18b8ae3d74ec/id-preview-e3134d64--86d5f3a7-fac2-4486-9016-5780ef08260f.lovable.app-1785211267587.png" },
     ],
     links: [
       {

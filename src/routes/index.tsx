@@ -16,12 +16,12 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "NEXENER — AI Energy Intelligence",
+        content: "NEXENER — Consultoría global de IA para el sector eléctrico",
       },
       {
         property: "og:description",
         content:
-          "Consultoría élite de IA aplicada al sector eléctrico. Predicción, optimización de red y estrategia para las utilities más complejas del mundo.",
+          "NEXENER integra inteligencia artificial y estrategia energética para operadores, generadores y utilities del sector eléctrico en América y Europa.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
