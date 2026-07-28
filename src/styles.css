@@ -2,7 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:is(.light *));
 
 @layer base {
   @font-face {
@@ -53,23 +53,45 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-ring: var(--ring);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-green: var(--brand-green);
 }
 
+/* Default: DARK / NOCTURNA */
 :root {
-  /* Institutional midnight + electric cyan */
-  --background: oklch(0.14 0.02 240);
+  --brand-blue: oklch(0.48 0.13 253);   /* #1F5E99 */
+  --brand-green: oklch(0.78 0.17 138);  /* #72BF4E */
+
+  --background: oklch(0.15 0.03 250);
   --foreground: oklch(0.97 0.005 240);
-  --surface: oklch(0.17 0.022 240);
-  --surface-2: oklch(0.21 0.025 240);
-  --muted: oklch(0.22 0.02 240);
-  --muted-foreground: oklch(0.68 0.025 240);
-  --border: oklch(0.28 0.02 240 / 0.6);
-  --border-strong: oklch(0.42 0.03 240);
-  --primary: oklch(0.82 0.14 195);
-  --primary-foreground: oklch(0.12 0.02 240);
-  --accent: oklch(0.72 0.12 185);
-  --accent-foreground: oklch(0.1 0.02 240);
-  --ring: oklch(0.82 0.14 195);
+  --surface: oklch(0.18 0.032 250);
+  --surface-2: oklch(0.22 0.035 250);
+  --muted: oklch(0.22 0.03 250);
+  --muted-foreground: oklch(0.7 0.025 240);
+  --border: oklch(0.3 0.03 250 / 0.6);
+  --border-strong: oklch(0.45 0.04 250);
+  --primary: var(--brand-green);
+  --primary-foreground: oklch(0.15 0.03 250);
+  --accent: var(--brand-blue);
+  --accent-foreground: oklch(0.97 0.005 240);
+  --ring: var(--brand-green);
+}
+
+/* Alternate: LIGHT / DIURNA */
+.light {
+  --background: oklch(0.985 0.003 240);      /* near white */
+  --foreground: oklch(0.2 0.02 250);         /* #333333-ish */
+  --surface: oklch(0.965 0.006 240);         /* #E6E8EB tint */
+  --surface-2: oklch(0.93 0.008 240);
+  --muted: oklch(0.94 0.008 240);
+  --muted-foreground: oklch(0.42 0.02 250);
+  --border: oklch(0.86 0.01 240);
+  --border-strong: oklch(0.68 0.02 245);
+  --primary: var(--brand-blue);
+  --primary-foreground: oklch(0.98 0.005 240);
+  --accent: var(--brand-green);
+  --accent-foreground: oklch(0.2 0.02 250);
+  --ring: var(--brand-blue);
 }
 
 @layer base {
