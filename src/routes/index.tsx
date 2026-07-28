@@ -551,11 +551,12 @@ function Insights() {
       <div className="container-x">
         <div className="mb-16 flex items-end justify-between">
           <div>
-            <p className="eyebrow mb-6">Publicaciones recientes</p>
-            <h2 className="max-w-xl text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-              Investigación aplicada, no marketing.
+            <SectionMark index="04" label="Publicaciones recientes" />
+            <h2 className="mt-6 max-w-xl text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+              Investigación aplicada, <span className="italic font-serif text-muted-foreground">no marketing.</span>
             </h2>
           </div>
+
           <a
             href="#"
             className="hidden font-mono text-[11px] uppercase tracking-[0.22em] text-primary hover:underline md:inline"
