@@ -264,15 +264,19 @@ function TrustBar() {
   ];
   return (
     <section className="border-y border-border bg-surface/40">
-      <div className="container-x flex flex-wrap items-center gap-x-12 gap-y-6 py-8">
-        <p className="eyebrow">Confían en NEXENER</p>
-        <div className="flex flex-1 flex-wrap items-center gap-x-10 gap-y-4">
-          {clients.map((c) => (
-            <span
-              key={c}
-              className="font-mono text-[13px] font-medium tracking-[0.18em] text-muted-foreground/80"
-            >
-              {c}
+      <div className="container-x flex flex-col gap-6 py-10 md:flex-row md:items-center md:gap-12">
+        <p className="shrink-0 font-serif text-sm italic text-muted-foreground">
+          En colaboración con operadores en cuatro continentes —
+        </p>
+        <div className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-4">
+          {clients.map((c, i) => (
+            <span key={c} className="flex items-center gap-8">
+              <span className="font-serif text-[15px] tracking-[0.12em] text-foreground/70">
+                {c}
+              </span>
+              {i < clients.length - 1 && (
+                <span aria-hidden className="h-3 w-px bg-border-strong/60" />
+              )}
             </span>
           ))}
         </div>
@@ -280,6 +284,7 @@ function TrustBar() {
     </section>
   );
 }
+
 
 function Capabilities() {
   const items = [
