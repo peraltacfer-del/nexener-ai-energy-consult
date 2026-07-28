@@ -612,11 +612,11 @@ function ContactCTA() {
 
       <div className="container-x grid gap-16 py-32 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <div>
-          <p className="eyebrow mb-6">Iniciar conversación</p>
-          <h2 className="max-w-xl text-balance font-serif text-5xl font-light leading-[1.05] md:text-6xl">
-            Escale su infraestructura para la{" "}
-            <em className="not-italic text-primary">era autónoma</em>.
+          <SectionMark index="05" label="Iniciar conversación" />
+          <h2 className="mt-6 max-w-xl text-balance font-serif text-5xl font-light leading-[1.02] tracking-[-0.015em] md:text-6xl">
+            Escale su infraestructura para la <Accent>era autónoma</Accent>.
           </h2>
+
           <p className="mt-8 max-w-lg text-muted-foreground">
             Nuestros partners regionales responden en menos de 48 horas.
             Coordinamos una sesión ejecutiva confidencial para explorar el
