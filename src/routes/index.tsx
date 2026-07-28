@@ -308,13 +308,13 @@ function Capabilities() {
       <div className="container-x">
         <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="eyebrow mb-6">Capacidades núcleo</p>
-            <h2 className="text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-              Consultoría de{" "}
-              <em className="not-italic text-primary">nueva generación</em>{" "}
-              construida sobre IA propietaria.
+            <SectionMark index="01" label="Capacidades núcleo" />
+            <h2 className="mt-6 text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+              Consultoría de <Accent>nueva generación</Accent> construida sobre
+              IA propietaria.
             </h2>
           </div>
+
           <p className="max-w-md text-muted-foreground">
             Cada intervención combina un partner senior con equipos de data
             science aplicados al negocio eléctrico. Sin outsourcing, sin
