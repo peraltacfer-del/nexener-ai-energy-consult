@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import heroGrid from "@/assets/hero-grid.jpg";
 import controlRoom from "@/assets/control-room.jpg";
 import substation from "@/assets/substation.jpg";
+import nexenerMark from "@/assets/nexener-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
