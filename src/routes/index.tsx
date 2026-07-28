@@ -39,6 +39,7 @@ function Landing() {
       <Capabilities />
       <Metrics />
       <Sectors />
+      <Manifesto />
       <Methodology />
       <Insights />
       <ContactCTA />
@@ -46,6 +47,7 @@ function Landing() {
     </div>
   );
 }
+
 
 function Nav() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
