@@ -462,7 +462,41 @@ function Sectors() {
   );
 }
 
+function Manifesto() {
+  return (
+    <section className="relative border-y border-border py-32">
+      <div className="container-x grid gap-12 md:grid-cols-[auto_1fr] md:gap-20">
+        <div className="flex flex-col">
+          <span className="font-serif text-[7rem] leading-[0.7] text-primary/80">
+            &ldquo;
+          </span>
+          <span className="mt-6 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+            Nota del socio director
+          </span>
+        </div>
+        <blockquote className="max-w-3xl">
+          <p className="text-balance font-serif text-3xl font-light leading-[1.25] tracking-[-0.005em] md:text-[2.5rem]">
+            La red eléctrica del próximo siglo no se construirá con más cobre.
+            Se construirá con <Accent>modelos que anticipen</Accent> cada
+            fluctuación antes de que ocurra. Ese es nuestro oficio.
+          </p>
+          <footer className="mt-10 flex items-center gap-4 border-t border-border pt-6">
+            <div className="grid size-10 place-items-center rounded-full border border-border-strong font-serif text-[13px] italic text-muted-foreground">
+              MR
+            </div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="text-foreground">Mateo Reinhardt</div>
+              <div>Socio director · NEXENER Global</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+  );
+}
+
 function Methodology() {
+
   const steps = [
     {
       n: "I",
