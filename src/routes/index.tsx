@@ -425,11 +425,11 @@ function Sectors() {
           </div>
         </div>
         <div>
-          <p className="eyebrow mb-6">Cobertura sectorial</p>
-          <h2 className="text-balance font-serif text-4xl font-light leading-tight md:text-5xl">
-            De la turbina al medidor. Una sola{" "}
-            <em className="not-italic text-primary">capa de inteligencia</em>.
+          <SectionMark index="02" label="Cobertura sectorial" />
+          <h2 className="mt-6 text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
+            De la turbina al medidor. Una sola <Accent>capa de inteligencia</Accent>.
           </h2>
+
           <p className="mt-6 max-w-lg text-muted-foreground">
             Rompemos los silos entre generación, transmisión y comercialización
             aplicando una arquitectura unificada de datos que refleja toda la
