@@ -7,7 +7,7 @@
 @theme inline {
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Newsreader", ui-serif, "Iowan Old Style", Georgia, serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-mono: "Open Sans", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: 2px;
   --radius-md: 4px;
@@ -28,30 +28,42 @@
   --color-ring: var(--ring);
   --color-brand-blue: var(--brand-blue);
   --color-brand-green: var(--brand-green);
+  --color-wordmark: var(--wordmark);
+  --color-deep: var(--deep);
 }
 
 /* Default: DARK / NOCTURNA */
 :root {
   --brand-blue: oklch(0.48 0.13 253);   /* #1F5E99 */
   --brand-green: oklch(0.78 0.17 138);  /* #72BF4E */
+  --wordmark: oklch(0.97 0.005 240);    /* blanco — versión nocturna/reversa del manual de marca */
 
-  --background: oklch(0.15 0.03 250);
-  --foreground: oklch(0.97 0.005 240);
-  --surface: oklch(0.18 0.032 250);
-  --surface-2: oklch(0.22 0.035 250);
-  --muted: oklch(0.22 0.03 250);
-  --muted-foreground: oklch(0.7 0.025 240);
-  --border: oklch(0.3 0.03 250 / 0.6);
-  --border-strong: oklch(0.45 0.04 250);
+  /* Azul noche sobre la base B2.1 (#0D2B4D) de la paleta de marca */
+  --background: oklch(0.185 0.028 232);
+  --foreground: oklch(0.96 0.01 220);
+  --surface: oklch(0.226 0.033 228);
+  --surface-2: oklch(0.268 0.036 228);
+  --muted: oklch(0.248 0.034 228);
+  --muted-foreground: oklch(0.78 0.026 228);
+  --border: oklch(0.83 0.044 225 / 0.16);
+  --border-strong: oklch(0.60 0.045 228);
   --primary: var(--brand-green);
-  --primary-foreground: oklch(0.15 0.03 250);
+  --primary-foreground: oklch(0.16 0.026 232);
   --accent: var(--brand-blue);
   --accent-foreground: oklch(0.97 0.005 240);
   --ring: var(--brand-green);
+  --deep: oklch(0.135 0.032 245);   /* azul marino profundo */
+  --grid-opacity: 0.12;
+  --bg-glow:
+    radial-gradient(circle at 12% 8%, oklch(0.78 0.17 138 / 0.07), transparent 32rem),
+    radial-gradient(circle at 88% 14%, oklch(0.48 0.13 253 / 0.14), transparent 34rem);
 }
 
 /* Alternate: LIGHT / DIURNA */
 .light {
+  --wordmark: var(--brand-blue);             /* #1F5E99 — azul corporativo B2.3 */
+  --deep: oklch(0.925 0.022 245);   /* azul marino claro */
+  --grid-opacity: 0.15;
   --background: oklch(0.985 0.003 240);      /* near white */
   --foreground: oklch(0.2 0.02 250);         /* #333333-ish */
   --surface: oklch(0.965 0.006 240);         /* #E6E8EB tint */
@@ -65,6 +77,9 @@
   --accent: var(--brand-green);
   --accent-foreground: oklch(0.2 0.02 250);
   --ring: var(--brand-blue);
+  --bg-glow:
+    radial-gradient(circle at 12% 8%, oklch(0.78 0.17 138 / 0.05), transparent 30rem),
+    radial-gradient(circle at 88% 14%, oklch(0.48 0.13 253 / 0.06), transparent 32rem);
 }
 
 @layer base {
@@ -76,6 +91,8 @@
   }
   body {
     background-color: var(--color-background);
+    background-image: var(--bg-glow);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -104,6 +121,23 @@
   color: var(--color-muted-foreground);
 }
 
+/* Retícula técnica: líneas finas que se desvanecen hacia los bordes */
+@utility technical-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-border-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-strong) 1px, transparent 1px);
+  background-size: 84px 84px;
+  opacity: var(--grid-opacity);
+  mask-image: radial-gradient(
+    ellipse 88% 68% at 50% 45%,
+    black 35%,
+    transparent 100%
+  );
+}
+
 @utility hairline {
   height: 1px;
   background: linear-gradient(
@@ -127,4 +161,58 @@
 
 @utility rise {
   animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Osciloscopio: trazo que se dibuja, punto que recorre la señal y latido del indicador */
+@keyframes trace-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility trace-draw {
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
+  animation: trace-draw 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scope-scan {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  12%,
+  62% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(760px);
+    opacity: 0;
+  }
+}
+
+@utility scope-scan {
+  animation: scope-scan 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes scope-pulse {
+  50% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}
+
+@utility scope-pulse {
+  animation: scope-pulse 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
