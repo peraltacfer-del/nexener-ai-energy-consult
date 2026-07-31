@@ -76,7 +76,7 @@ function Nav() {
             <span className="font-sans text-[16px] font-medium tracking-[0.38em] text-wordmark md:text-[18px] md:tracking-[0.42em]">
               NEXENER
             </span>
-            <span className="font-mono text-[9px] tracking-[0.2em] text-muted-foreground">
+            <span className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground">
               {t.nav.tagline}
             </span>
           </span>
@@ -109,7 +109,7 @@ function Nav() {
             )}
           </button>
 
-          <span className="hidden items-center font-mono text-[10px] tracking-[0.2em] sm:flex">
+          <span className="hidden items-center font-mono text-[12px] tracking-[0.2em] sm:flex">
             <button
               type="button"
               onClick={() => setLang("es")}
@@ -137,7 +137,7 @@ function Nav() {
 
           <a
             href="#contacto"
-            className="hidden items-center rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground md:inline-flex"
+            className="hidden items-center rounded-full border border-primary/50 bg-primary/10 px-4 py-1.5 font-mono text-[13px] font-medium uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground md:inline-flex"
           >
             {t.nav.cta}
           </a>
@@ -171,11 +171,11 @@ function Nav() {
               <a
                 href="#contacto"
                 onClick={() => setOpen(false)}
-                className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-primary font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-foreground"
+                className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-primary font-mono text-[13px] font-semibold uppercase tracking-[0.2em] text-primary-foreground"
               >
                 {t.nav.cta}
               </a>
-              <span className="flex items-center font-mono text-[11px] tracking-[0.2em] sm:hidden">
+              <span className="flex items-center font-mono text-[13px] tracking-[0.2em] sm:hidden">
                 <button
                   type="button"
                   onClick={() => setLang("es")}
@@ -287,17 +287,14 @@ function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-6">
             <a
               href="#contacto"
-              className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-6 font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-foreground transition-all hover:brightness-110"
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-primary px-6 font-mono text-[13px] font-semibold uppercase tracking-[0.18em] text-primary-foreground transition-all hover:brightness-110"
             >
               {t.hero.cta1}
             </a>
             <a
               href="#capacidades"
-              className="group inline-flex h-10 items-center gap-2.5 rounded-full border border-border-strong px-5 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-foreground/90 transition-colors hover:bg-surface"
+              className="group inline-flex h-10 items-center gap-2.5 rounded-full border border-border-strong px-5 font-mono text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/90 transition-colors hover:bg-surface"
             >
-              <span aria-hidden className="text-[13px]">
-                ↓
-              </span>
               {t.hero.cta2}
             </a>
           </div>
@@ -305,7 +302,7 @@ function Hero() {
 
         <div className="mt-12 flex flex-col items-start gap-6 border-t border-border pt-6 md:mt-16 md:flex-row md:items-center md:justify-between">
           <p className="eyebrow">{t.hero.presence}</p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[12px] text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-[13px] text-muted-foreground">
             {t.hero.cities.map((c, i, arr) => (
               <span key={c} className="flex items-center gap-6">
                 <span>{c}</span>
@@ -420,13 +417,8 @@ function CapabilityIcon({ code }: { code: string }) {
 
 function SectionMark({ index, label }: { index?: string; label: string }) {
   return (
-    <div className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-      {index && (
-        <>
-          <span className="text-primary">N.º {index}</span>
-          <span aria-hidden className="h-px w-8 bg-border-strong" />
-        </>
-      )}
+    <div className="inline-flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.24em] text-muted-foreground">
+      <span aria-hidden className="h-px w-8 bg-border-strong" />
       <span>{label}</span>
     </div>
   );
@@ -473,11 +465,11 @@ function Nexus() {
                 src={nexusImages[it.code]}
                 alt=""
                 loading="lazy"
-                className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.32] transition-opacity duration-700 group-hover:opacity-[0.45] light:opacity-[0.6] light:contrast-125 light:saturate-110 light:group-hover:opacity-[0.75]"
+                className="absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.45] transition-opacity duration-700 group-hover:opacity-[0.58] light:opacity-[0.72] light:contrast-125 light:saturate-110 light:group-hover:opacity-[0.85]"
               />
               <div
                 aria-hidden
-                className="absolute inset-0 -z-10 bg-gradient-to-t from-surface via-surface/45 to-transparent light:via-surface/60 light:to-surface/10"
+                className="absolute inset-0 -z-10 bg-gradient-to-t from-surface via-surface/24 to-transparent light:via-surface/28 light:to-surface/10"
               />
               <h3 className="font-serif text-[1.9rem] font-light leading-[1.15] md:text-[2.1rem]">
                 {it.title}
@@ -509,7 +501,6 @@ function Ecosystem() {
               {t.ecosystem.h2}
             </h2>
           </div>
-          <p className="max-w-md text-justify text-muted-foreground hyphens-auto">{t.ecosystem.p}</p>
         </div>
 
         <div className="mt-12 grid gap-px bg-border md:grid-cols-2">
@@ -537,12 +528,12 @@ function Ecosystem() {
                   <span className="grid size-12 shrink-0 place-items-center rounded-full border border-border-strong/50 text-primary transition-all duration-500 group-hover:border-primary/60 group-hover:bg-primary/10">
                     <PlatformIcon code={p.code} />
                   </span>
-                  <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+                  <span className="mt-1 font-mono text-[12px] uppercase tracking-[0.24em] text-muted-foreground">
                     {p.code} / 2
                   </span>
                 </div>
 
-                <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
+                <p className="mt-8 font-mono text-[12px] uppercase tracking-[0.24em] text-primary">
                   {p.kicker}
                 </p>
                 <h3 className="mt-3 font-sans text-[2.4rem] font-medium tracking-[0.14em] text-foreground md:text-5xl">
@@ -559,7 +550,7 @@ function Ecosystem() {
                   href={p.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-10 inline-flex w-fit items-center gap-3 rounded-full border border-primary/50 bg-primary/10 px-5 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground"
+                  className="mt-10 inline-flex w-fit items-center gap-3 rounded-full border border-primary/50 bg-primary/10 px-5 py-2 font-mono text-[13px] uppercase tracking-[0.18em] text-primary transition-all hover:bg-primary hover:text-primary-foreground"
                 >
                   {p.cta}
                   <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
@@ -567,7 +558,7 @@ function Ecosystem() {
                   </span>
                 </a>
               ) : (
-                <span className="mt-10 inline-flex w-fit items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="mt-10 inline-flex w-fit items-center gap-2.5 font-mono text-[13px] uppercase tracking-[0.18em] text-muted-foreground">
                   <span aria-hidden className="scope-pulse size-1.5 rounded-full bg-primary" />
                   {p.status}
                 </span>
@@ -624,14 +615,14 @@ function Team() {
                   className="size-full object-cover transition-transform duration-500 hover:scale-105"
                 />
               </div>
-              <p className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-primary">
+              <p className="mt-8 font-mono text-[13px] uppercase tracking-[0.24em] text-primary">
                 {person.role}
               </p>
               <h3 className="mt-3 font-serif text-2xl font-normal">
                 {person.name}
               </h3>
               <div className="mt-5 h-px w-8 bg-border-strong" />
-              <p className="mt-5 text-[14px] leading-relaxed text-muted-foreground">
+              <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">
                 {person.area}
               </p>
             </article>
@@ -731,7 +722,7 @@ function SignalLab() {
 
         <div className="overflow-hidden rounded-lg border border-border bg-surface/50">
           <div className="flex flex-wrap items-center gap-4 border-b border-border px-5 py-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+            <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
               {t.signal.channel}
             </span>
             <div
@@ -744,7 +735,7 @@ function SignalLab() {
                   key={m}
                   type="button"
                   onClick={() => setMode(m)}
-                  className={`rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors ${
+                  className={`rounded-full px-3 py-1 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors ${
                     mode === m
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -754,7 +745,7 @@ function SignalLab() {
                 </button>
               ))}
             </div>
-            <span className="ml-auto inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-primary">
+            <span className="ml-auto inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.22em] text-primary">
               <span
                 aria-hidden
                 className="scope-pulse size-1.5 rounded-full bg-primary"
@@ -912,7 +903,7 @@ function SignalLab() {
             </text>
           </svg>
 
-          <div className="flex items-center justify-between gap-4 border-t border-border px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          <div className="flex items-center justify-between gap-4 border-t border-border px-5 py-3 font-mono text-[12px] uppercase tracking-[0.2em] text-muted-foreground">
             <span className="text-foreground/80">f = {freq.toFixed(2)} Hz</span>
             <span>{t.signal.sampling}</span>
             <span className="hidden sm:block">{t.signal.disclaimer}</span>
@@ -952,7 +943,7 @@ function Sectors() {
                 key={r.k}
                 className="grid grid-cols-[auto_1fr] gap-x-8 border-t border-border pt-6"
               >
-                <span className="font-mono text-[11px] tracking-[0.22em] text-primary">
+                <span className="font-mono text-[13px] tracking-[0.22em] text-primary">
                   {r.k}
                 </span>
                 <div>
@@ -998,7 +989,7 @@ function Methodology() {
                 <span className="font-serif text-5xl font-light text-primary">
                   {s.n}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
                   {t.methodology.phase}
                 </span>
               </div>
@@ -1051,7 +1042,7 @@ function ContactCTA() {
               <dd className="mt-2 text-sm">press@nexener.com</dd>
             </div>
           </dl>
-          <p className="mt-10 border-t border-border pt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <p className="mt-10 border-t border-border pt-6 font-mono text-[13px] uppercase tracking-[0.22em] text-muted-foreground">
             {t.contact.place}
           </p>
         </div>
@@ -1067,7 +1058,7 @@ function ContactCTA() {
             <Field label={t.contact.fOrg} placeholder={t.contact.fOrgPh} />
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="block font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fRegion}</label>
+                <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fRegion}</label>
                 <select className="mt-2 w-full appearance-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none focus:border-primary">
                   {t.contact.regions.map((r) => (
                     <option key={r}>{r}</option>
@@ -1075,7 +1066,7 @@ function ContactCTA() {
                 </select>
               </div>
               <div>
-                <label className="block font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fService}</label>
+                <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fService}</label>
                 <select
                   defaultValue=""
                   className="mt-2 w-full appearance-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none focus:border-primary"
@@ -1090,7 +1081,7 @@ function ContactCTA() {
               </div>
             </div>
             <div>
-              <label className="block font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fContext}</label>
+              <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fContext}</label>
               <textarea
                 rows={2}
                 className="mt-2 w-full resize-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
@@ -1100,7 +1091,7 @@ function ContactCTA() {
           </div>
           <button
             type="button"
-            className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary font-mono text-[12px] font-semibold uppercase tracking-[0.22em] text-primary-foreground transition-all hover:brightness-110"
+            className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary font-mono text-[13px] font-semibold uppercase tracking-[0.22em] text-primary-foreground transition-all hover:brightness-110"
           >
             {t.contact.submit}
           </button>
@@ -1121,7 +1112,7 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/90">{label}</label>
+      <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{label}</label>
       <input
         type={type}
         placeholder={placeholder}
@@ -1164,7 +1155,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 font-mono text-[12px] uppercase tracking-[0.22em] text-muted-foreground md:flex-row md:items-center">
           <span>{t.footer.copyright}</span>
           <div className="flex gap-8">
             {t.footer.links.map((l) => (

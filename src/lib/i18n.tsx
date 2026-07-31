@@ -53,7 +53,7 @@ const es = {
     ],
   },
   capabilities: {
-    mark: "Capacidades núcleo",
+    mark: "Capacidades",
     h2: (
       <>
         Soluciones de <Accent>nueva generación</Accent> construidas sobre IA
@@ -154,7 +154,6 @@ const es = {
         Dos plataformas <Accent>especializadas</Accent>.
       </>
     ),
-    p: "La estrategia vive en NEXENER; la ejecución, en dos entornos propios: PSAgent para la ingeniería y EMSIM para los mercados.",
     platforms: [
       {
         code: "1",
@@ -242,7 +241,7 @@ const es = {
     h2: (
       <>
         Un marco de trabajo probado en las redes eléctricas más{" "}
-        <Accent>complejas</Accent> del planeta.
+        <Accent>complejas</Accent>.
       </>
     ),
     phase: "fase",
@@ -280,11 +279,11 @@ const es = {
     partnerships: "Partnerships",
     press: "Prensa",
     fName: "Nombre completo",
-    fNamePh: "Ana Rodríguez",
+    fNamePh: "",
     fEmail: "Correo corporativo",
-    fEmailPh: "ana@empresa.com",
+    fEmailPh: "",
     fOrg: "Organización",
-    fOrgPh: "Nombre de la utility",
+    fOrgPh: "",
     fRegion: "Región",
     regions: ["Norteamérica", "Latinoamérica", "Europa", "Otro"],
     fService: "Servicio de interés",
@@ -361,7 +360,7 @@ const en: Copy = {
     ],
   },
   capabilities: {
-    mark: "Core capabilities",
+    mark: "Capabilities",
     h2: (
       <>
         <Accent>Next-generation</Accent> solutions built on proprietary AI.
@@ -460,7 +459,6 @@ const en: Copy = {
         Two <Accent>specialised</Accent> platforms.
       </>
     ),
-    p: "Strategy lives in NEXENER; execution, in two proprietary environments: PSAgent for engineering and EMSIM for markets.",
     platforms: [
       {
         code: "1",
@@ -547,8 +545,7 @@ const en: Copy = {
     mark: "Methodology",
     h2: (
       <>
-        A framework proven on the most <Accent>complex</Accent> power grids on
-        the planet.
+        A framework proven on the most <Accent>complex</Accent> power grids.
       </>
     ),
     phase: "phase",
@@ -586,11 +583,11 @@ const en: Copy = {
     partnerships: "Partnerships",
     press: "Press",
     fName: "Full name",
-    fNamePh: "Ana Rodríguez",
+    fNamePh: "",
     fEmail: "Corporate email",
-    fEmailPh: "ana@company.com",
+    fEmailPh: "",
     fOrg: "Organization",
-    fOrgPh: "Utility name",
+    fOrgPh: "",
     fRegion: "Region",
     regions: ["North America", "Latin America", "Europe", "Other"],
     fService: "Service of interest",

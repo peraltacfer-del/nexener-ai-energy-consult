@@ -7,10 +7,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
   return (
@@ -37,9 +36,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -79,16 +75,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
       { name: "description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "NEXENER" },
       { property: "og:title", content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
       { property: "og:description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
       { name: "twitter:description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7048ee7f-43e3-4fae-88f4-18b8ae3d74ec/id-preview-e3134d64--86d5f3a7-fac2-4486-9016-5780ef08260f.lovable.app-1785211267587.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7048ee7f-43e3-4fae-88f4-18b8ae3d74ec/id-preview-e3134d64--86d5f3a7-fac2-4486-9016-5780ef08260f.lovable.app-1785211267587.png" },
+      { property: "og:image", content: "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png" },
+      { name: "twitter:image", content: "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png" },
     ],
     links: [
       {
@@ -101,7 +96,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Inter+Tight:wght@300;400;500;600&family=Open+Sans:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "64x64" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
