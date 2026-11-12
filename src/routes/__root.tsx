@@ -72,59 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
-      {
-        name: "description",
-        content:
-          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
-      },
-      { name: "author", content: "NEXENER" },
-      {
-        property: "og:title",
-        content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico",
-      },
-      {
-        property: "og:description",
-        content:
-          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:title",
-        content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
-      },
-      {
-        property: "og:image",
-        content:
-          "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png",
-      },
-      {
-        name: "twitter:image",
-        content:
-          "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png",
-      },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Inter+Tight:wght@300;400;500;600&family=Open+Sans:wght@400;500;600;700&display=swap",
+        // Ícono en su versión sobre fondo claro: verde arriba a la derecha, azul abajo a la izquierda
+        rel: "icon",
+        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F2EA'/%3E%3Crect x='16' y='6' width='10' height='10' fill='%235AAE33'/%3E%3Crect x='6' y='16' width='10' height='10' fill='%230A1F3D'/%3E%3C/svg%3E",
       },
-      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
-      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "64x64" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -135,8 +94,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es">
+    // "no-js" pasa a "js" antes de pintar, igual que en el HTML original; el script de la página
+    // agrega luego otras clases a <html>, por eso React no debe compararlas al hidratar.
+    <html lang="es" className="no-js" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.className='js';" }} />
         <HeadContent />
       </head>
       <body>
