@@ -74,16 +74,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
-      { name: "description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
+      {
+        name: "description",
+        content:
+          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
+      },
       { name: "author", content: "NEXENER" },
-      { property: "og:title", content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
-      { property: "og:description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
+      {
+        property: "og:title",
+        content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico",
+      },
+      {
+        property: "og:description",
+        content:
+          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico" },
-      { name: "twitter:description", content: "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa." },
-      { property: "og:image", content: "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png" },
-      { name: "twitter:image", content: "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png" },
+      {
+        name: "twitter:title",
+        content: "NEXENER — Soluciones Energéticas e IA para el sector eléctrico",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "NEXENER diseña e implementa soluciones de energía e inteligencia artificial para operadores, generadores y utilities del sector eléctrico en América y Europa.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og.png",
+      },
     ],
     links: [
       {
@@ -109,7 +135,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>

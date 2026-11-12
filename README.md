@@ -4,7 +4,7 @@ hola necesito que me hagas una pagina web para una empresa llamada NEXENER y es 
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://nexener-ai-energy-consult.lovable.app
+**Web oficial**: https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/
 
 ## Build with Lovable
 
@@ -22,5 +22,5 @@ Prefer working locally? You need Node.js and npm — [install with nvm](https://
 git clone <this-repository-url>
 cd <repository-name>
 npm i
-npm run dev
+npm run dev 
 ```

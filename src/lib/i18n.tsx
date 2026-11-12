@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export type Lang = "es" | "en";
 
@@ -56,8 +50,7 @@ const es = {
     mark: "Capacidades",
     h2: (
       <>
-        Soluciones de <Accent>nueva generación</Accent> construidas sobre IA
-        propietaria.
+        Soluciones de <Accent>nueva generación</Accent> construidas sobre IA propietaria.
       </>
     ),
     p: "Cada intervención combina un socio senior con equipos de ciencia de datos aplicados al negocio eléctrico. Sin subcontratación, sin plantillas genéricas.",
@@ -98,8 +91,7 @@ const es = {
     mark: "Del sistema físico a la inteligencia digital",
     h2: (
       <>
-        Ingeniería que entiende la señal.{" "}
-        <Accent>IA que acelera la decisión</Accent>.
+        Ingeniería que entiende la señal. <Accent>IA que acelera la decisión</Accent>.
       </>
     ),
     p: "Modelos, simulaciones, datos y criterio experto en flujos auditables: cada resultado puede rastrearse hasta su origen.",
@@ -117,15 +109,13 @@ const es = {
     sampling: "fs = 20 kHz",
     disclaimer: "Interfaz ilustrativa",
     switchAria: "Seleccionar visualización de señal",
-    scopeAlt:
-      "Conversión conceptual de una señal eléctrica en inteligencia digital",
+    scopeAlt: "Conversión conceptual de una señal eléctrica en inteligencia digital",
   },
   nexus: {
     mark: "El nexo",
     h2: (
       <>
-        La infraestructura física se encuentra con la{" "}
-        <Accent>inteligencia digital</Accent>.
+        La infraestructura física se encuentra con la <Accent>inteligencia digital</Accent>.
       </>
     ),
     p: "Tres disciplinas, un mismo propósito: que cada decisión energética se tome con mejor información.",
@@ -240,8 +230,7 @@ const es = {
     mark: "Metodología",
     h2: (
       <>
-        Un marco de trabajo probado en las redes eléctricas más{" "}
-        <Accent>complejas</Accent>.
+        Un marco de trabajo probado en las redes eléctricas más <Accent>complejas</Accent>.
       </>
     ),
     phase: "fase",
@@ -272,8 +261,7 @@ const es = {
     mark: "Iniciar conversación",
     h2: (
       <>
-        Construyamos juntos el{" "}
-        <Accent>futuro energético inteligente</Accent>.
+        Construyamos juntos el <Accent>futuro energético inteligente</Accent>.
       </>
     ),
     partnerships: "Partnerships",
@@ -349,15 +337,7 @@ const en: Copy = {
     cta2: "Explore capabilities",
     imageAlt: "NEXENER command center with energy analytics panels",
     presence: "Operating presence",
-    cities: [
-      "Madrid",
-      "London",
-      "New York",
-      "Toronto",
-      "Mexico City",
-      "São Paulo",
-      "Santiago",
-    ],
+    cities: ["Madrid", "London", "New York", "Toronto", "Mexico City", "São Paulo", "Santiago"],
   },
   capabilities: {
     mark: "Capabilities",
@@ -404,8 +384,7 @@ const en: Copy = {
     mark: "From the physical system to digital intelligence",
     h2: (
       <>
-        Engineering that reads the signal.{" "}
-        <Accent>AI that accelerates the decision</Accent>.
+        Engineering that reads the signal. <Accent>AI that accelerates the decision</Accent>.
       </>
     ),
     p: "Models, simulation, data and expert judgement in auditable workflows: every result can be traced to its source.",
@@ -423,8 +402,7 @@ const en: Copy = {
     sampling: "fs = 20 kHz",
     disclaimer: "Illustrative interface",
     switchAria: "Select signal view",
-    scopeAlt:
-      "Conceptual conversion of an electrical signal into digital intelligence",
+    scopeAlt: "Conceptual conversion of an electrical signal into digital intelligence",
   },
   nexus: {
     mark: "The nexus",
@@ -576,8 +554,7 @@ const en: Copy = {
     mark: "Start a conversation",
     h2: (
       <>
-        Let&rsquo;s build the <Accent>intelligent energy future</Accent>{" "}
-        together.
+        Let&rsquo;s build the <Accent>intelligent energy future</Accent> together.
       </>
     ),
     partnerships: "Partnerships",
@@ -634,24 +611,28 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("es");
 
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "es" || saved === "en") {
-      setLangState(saved);
-      document.documentElement.lang = saved;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === "es" || saved === "en") {
+        setLangState(saved);
+        document.documentElement.lang = saved;
+      }
+    } catch {
+      // almacenamiento no disponible (modo privado): se queda el idioma por defecto
     }
   }, []);
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    localStorage.setItem(STORAGE_KEY, l);
     document.documentElement.lang = l;
+    try {
+      localStorage.setItem(STORAGE_KEY, l);
+    } catch {
+      // sin almacenamiento, el idioma solo dura esta visita
+    }
   };
 
-  return (
-    <LangContext.Provider value={{ lang, setLang }}>
-      {children}
-    </LangContext.Provider>
-  );
+  return <LangContext.Provider value={{ lang, setLang }}>{children}</LangContext.Provider>;
 }
 
 export function useLang() {

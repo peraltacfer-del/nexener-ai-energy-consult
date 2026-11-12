@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState, type FormEvent } from "react";
 import heroGrid from "@/assets/hero-grid.jpg";
 import sectorsOps from "@/assets/sectors-ops.jpg";
 import substation from "@/assets/substation.jpg";
@@ -37,6 +37,10 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
+const THEME_KEY = "nexener-theme";
+const CONTACT_EMAIL = "partnerships@nexener.com";
+const PRESS_EMAIL = "press@nexener.com";
+
 function Landing() {
   return (
     <LangProvider>
@@ -57,15 +61,30 @@ function Landing() {
   );
 }
 
-
 function Nav() {
   const { lang, setLang, t } = useLang();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [open, setOpen] = useState(false);
   useEffect(() => {
+    try {
+      if (localStorage.getItem(THEME_KEY) === "light") setTheme("light");
+    } catch {
+      // almacenamiento no disponible (modo privado): se queda el tema por defecto
+    }
+  }, []);
+  useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle("light", theme === "light");
   }, [theme]);
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {
+      // sin almacenamiento, el tema solo dura esta visita
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -84,11 +103,7 @@ function Nav() {
 
         <nav className="hidden gap-7 whitespace-nowrap text-[13px] text-muted-foreground lg:flex">
           {t.nav.links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="transition-colors hover:text-foreground"
-            >
+            <a key={l.href} href={l.href} className="transition-colors hover:text-foreground">
               {l.label}
             </a>
           ))}
@@ -97,22 +112,19 @@ function Nav() {
         <div className="flex shrink-0 items-center gap-2 md:gap-3">
           <button
             type="button"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
             aria-label={t.nav.themeAria}
             title={theme === "dark" ? t.nav.themeDay : t.nav.themeNight}
             className="grid size-9 place-items-center rounded-full border border-border-strong/60 text-foreground/80 transition-colors hover:bg-surface hover:text-foreground"
           >
-            {theme === "dark" ? (
-              <SunIcon className="size-4" />
-            ) : (
-              <MoonIcon className="size-4" />
-            )}
+            {theme === "dark" ? <SunIcon className="size-4" /> : <MoonIcon className="size-4" />}
           </button>
 
           <span className="hidden items-center font-mono text-[12px] tracking-[0.2em] sm:flex">
             <button
               type="button"
               onClick={() => setLang("es")}
+              aria-pressed={lang === "es"}
               className={
                 lang === "es"
                   ? "text-foreground"
@@ -125,6 +137,7 @@ function Nav() {
             <button
               type="button"
               onClick={() => setLang("en")}
+              aria-pressed={lang === "en"}
               className={
                 lang === "en"
                   ? "text-foreground"
@@ -179,6 +192,7 @@ function Nav() {
                 <button
                   type="button"
                   onClick={() => setLang("es")}
+                  aria-pressed={lang === "es"}
                   className={lang === "es" ? "text-foreground" : "text-muted-foreground opacity-60"}
                 >
                   ES
@@ -187,6 +201,7 @@ function Nav() {
                 <button
                   type="button"
                   onClick={() => setLang("en")}
+                  aria-pressed={lang === "en"}
                   className={lang === "en" ? "text-foreground" : "text-muted-foreground opacity-60"}
                 >
                   EN
@@ -211,11 +226,7 @@ function MenuIcon({ open, className = "" }: { open: boolean; className?: string 
       className={className}
       aria-hidden
     >
-      {open ? (
-        <path d="M18 6 6 18M6 6l12 12" />
-      ) : (
-        <path d="M4 7h16M4 12h16M4 17h16" />
-      )}
+      {open ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
     </svg>
   );
 }
@@ -234,7 +245,15 @@ function Logo({ className = "" }: { className?: string }) {
 
 function SunIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
       <circle cx="12" cy="12" r="4" />
       <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
     </svg>
@@ -243,7 +262,15 @@ function SunIcon({ className = "" }: { className?: string }) {
 
 function MoonIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
     </svg>
   );
@@ -259,6 +286,7 @@ function Hero() {
           alt=""
           width={1920}
           height={1200}
+          fetchPriority="high"
           className="h-full w-full object-cover opacity-72 light:opacity-62 light:contrast-110"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/25 via-background/45 to-background light:from-background/30 light:via-background/50" />
@@ -415,7 +443,7 @@ function CapabilityIcon({ code }: { code: string }) {
   );
 }
 
-function SectionMark({ index, label }: { index?: string; label: string }) {
+function SectionMark({ label }: { index?: string; label: string }) {
   return (
     <div className="inline-flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.24em] text-muted-foreground">
       <span aria-hidden className="h-px w-8 bg-border-strong" />
@@ -423,8 +451,6 @@ function SectionMark({ index, label }: { index?: string; label: string }) {
     </div>
   );
 }
-
-
 
 function Nexus() {
   const { t } = useLang();
@@ -475,9 +501,7 @@ function Nexus() {
                 {it.title}
               </h3>
               <div className="mt-5 h-px w-10 bg-primary/60" />
-              <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">
-                {it.body}
-              </p>
+              <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">{it.body}</p>
             </article>
           ))}
         </div>
@@ -573,9 +597,9 @@ function Ecosystem() {
 
 /* Cada pilar del nexo lleva una imagen afín a su concepto */
 const nexusImages: Record<string, string> = {
-  "1": nexusEngineering,       // Ingeniería
-  "2": nexusIntelligence,      // Inteligencia
-  "3": nexusTransformation,    // Transformación
+  "1": nexusEngineering, // Ingeniería
+  "2": nexusIntelligence, // Inteligencia
+  "3": nexusTransformation, // Transformación
 };
 
 const teamPhotos: Record<string, string> = {
@@ -618,9 +642,7 @@ function Team() {
               <p className="mt-8 font-mono text-[13px] uppercase tracking-[0.24em] text-primary">
                 {person.role}
               </p>
-              <h3 className="mt-3 font-serif text-2xl font-normal">
-                {person.name}
-              </h3>
+              <h3 className="mt-3 font-serif text-2xl font-normal">{person.name}</h3>
               <div className="mt-5 h-px w-8 bg-border-strong" />
               <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">
                 {person.area}
@@ -646,7 +668,9 @@ function Capabilities() {
             </h2>
           </div>
 
-          <p className="max-w-md text-justify text-muted-foreground hyphens-auto">{t.capabilities.p}</p>
+          <p className="max-w-md text-justify text-muted-foreground hyphens-auto">
+            {t.capabilities.p}
+          </p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
@@ -685,17 +709,17 @@ function SignalLab() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(
-      () => setFreq(50 + (Math.random() * 0.05 - 0.025)),
-      1800,
-    );
+    const id = setInterval(() => setFreq(50 + (Math.random() * 0.05 - 0.025)), 1800);
     return () => clearInterval(id);
   }, []);
 
   const digital = mode === "digital";
 
   return (
-    <section id="laboratorio" className="relative isolate overflow-hidden border-y border-border py-14 md:py-24">
+    <section
+      id="laboratorio"
+      className="relative isolate overflow-hidden border-y border-border py-14 md:py-24"
+    >
       <TechGrid />
       <div className="container-x grid items-center gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div>
@@ -703,17 +727,16 @@ function SignalLab() {
           <h2 className="mt-6 text-balance font-serif text-4xl font-light leading-[1.05] tracking-[-0.01em] md:text-[3.25rem]">
             {t.signal.h2}
           </h2>
-          <p className="mt-6 max-w-lg text-justify text-muted-foreground hyphens-auto">{t.signal.p}</p>
+          <p className="mt-6 max-w-lg text-justify text-muted-foreground hyphens-auto">
+            {t.signal.p}
+          </p>
           <div className="mt-10 space-y-4">
             {t.signal.points.map((p) => (
               <div
                 key={p}
                 className="flex items-start gap-4 border-t border-border pt-4 text-[15px] text-foreground/85"
               >
-                <span
-                  aria-hidden
-                  className="mt-2 size-1.5 shrink-0 rounded-full bg-primary"
-                />
+                <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
                 {p}
               </div>
             ))}
@@ -735,6 +758,7 @@ function SignalLab() {
                   key={m}
                   type="button"
                   onClick={() => setMode(m)}
+                  aria-pressed={mode === m}
                   className={`rounded-full px-3 py-1 font-mono text-[12px] uppercase tracking-[0.16em] transition-colors ${
                     mode === m
                       ? "bg-primary text-primary-foreground"
@@ -746,10 +770,7 @@ function SignalLab() {
               ))}
             </div>
             <span className="ml-auto inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.22em] text-primary">
-              <span
-                aria-hidden
-                className="scope-pulse size-1.5 rounded-full bg-primary"
-              />
+              <span aria-hidden className="scope-pulse size-1.5 rounded-full bg-primary" />
               {t.signal.live}
             </span>
           </div>
@@ -761,12 +782,7 @@ function SignalLab() {
             className="block h-auto w-full"
           >
             <defs>
-              <pattern
-                id="scope-grid"
-                width="45"
-                height="45"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="scope-grid" width="45" height="45" patternUnits="userSpaceOnUse">
                 <path
                   d="M45 0H0V45"
                   fill="none"
@@ -813,12 +829,7 @@ function SignalLab() {
               height="300"
               fill="url(#scan-fade)"
             />
-            <g
-              stroke="var(--color-primary)"
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.45"
-            >
+            <g stroke="var(--color-primary)" strokeWidth="1.5" fill="none" opacity="0.45">
               <path d="M18 42V18h24M702 42V18h-24M18 258v24h24M702 258v24h-24" />
             </g>
             <line
@@ -935,7 +946,9 @@ function Sectors() {
             {t.sectors.h2}
           </h2>
 
-          <p className="mt-6 max-w-lg text-justify text-muted-foreground hyphens-auto">{t.sectors.p}</p>
+          <p className="mt-6 max-w-lg text-justify text-muted-foreground hyphens-auto">
+            {t.sectors.p}
+          </p>
 
           <div className="mt-12 space-y-6">
             {t.sectors.rows.map((r) => (
@@ -943,14 +956,10 @@ function Sectors() {
                 key={r.k}
                 className="grid grid-cols-[auto_1fr] gap-x-8 border-t border-border pt-6"
               >
-                <span className="font-mono text-[13px] tracking-[0.22em] text-primary">
-                  {r.k}
-                </span>
+                <span className="font-mono text-[13px] tracking-[0.22em] text-primary">{r.k}</span>
                 <div>
                   <h3 className="font-serif text-xl font-normal">{r.t}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
-                    {r.d}
-                  </p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{r.d}</p>
                 </div>
               </div>
             ))}
@@ -977,7 +986,6 @@ function Methodology() {
               {t.methodology.h2}
             </h2>
           </div>
-
         </div>
 
         <div className="hairline mb-10" />
@@ -986,17 +994,13 @@ function Methodology() {
           {t.methodology.steps.map((s) => (
             <div key={s.n} className="bg-deep p-8 md:p-10">
               <div className="flex items-baseline justify-between">
-                <span className="font-serif text-5xl font-light text-primary">
-                  {s.n}
-                </span>
+                <span className="font-serif text-5xl font-light text-primary">{s.n}</span>
                 <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-muted-foreground">
                   {t.methodology.phase}
                 </span>
               </div>
               <h3 className="mt-10 font-serif text-2xl font-normal">{s.t}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
-                {s.d}
-              </p>
+              <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">{s.d}</p>
             </div>
           ))}
         </div>
@@ -1007,11 +1011,27 @@ function Methodology() {
 
 function ContactCTA() {
   const { t } = useLang();
+  const formId = useId();
+
+  /* Sin backend: el formulario abre el correo del visitante con la solicitud ya redactada */
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const get = (k: string) => String(data.get(k) ?? "").trim();
+    const subject = `${t.contact.submit} — ${get("org") || get("name")}`;
+    const body = [
+      `${t.contact.fName}: ${get("name")}`,
+      `${t.contact.fEmail}: ${get("email")}`,
+      `${t.contact.fOrg}: ${get("org")}`,
+      `${t.contact.fRegion}: ${get("region")}`,
+      `${t.contact.fService}: ${get("service")}`,
+      "",
+      get("context"),
+    ].join("\n");
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
   return (
-    <section
-      id="contacto"
-      className="relative isolate overflow-hidden border-t border-border"
-    >
+    <section id="contacto" className="relative isolate overflow-hidden border-t border-border">
       <TechGrid />
       <div className="absolute inset-0 -z-10">
         <img
@@ -1035,11 +1055,22 @@ function ContactCTA() {
           <dl className="mt-12 grid grid-cols-2 gap-8 max-w-md">
             <div>
               <dt className="eyebrow">{t.contact.partnerships}</dt>
-              <dd className="mt-2 text-sm">partnerships@nexener.com</dd>
+              <dd className="mt-2 text-sm">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="transition-colors hover:text-primary"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </dd>
             </div>
             <div>
               <dt className="eyebrow">{t.contact.press}</dt>
-              <dd className="mt-2 text-sm">press@nexener.com</dd>
+              <dd className="mt-2 text-sm">
+                <a href={`mailto:${PRESS_EMAIL}`} className="transition-colors hover:text-primary">
+                  {PRESS_EMAIL}
+                </a>
+              </dd>
             </div>
           </dl>
           <p className="mt-10 border-t border-border pt-6 font-mono text-[13px] uppercase tracking-[0.22em] text-muted-foreground">
@@ -1047,27 +1078,60 @@ function ContactCTA() {
           </p>
         </div>
 
-        <form className="rounded-lg border border-border bg-surface/60 p-7 backdrop-blur-md md:p-8">
+        <form
+          onSubmit={onSubmit}
+          className="rounded-lg border border-border bg-surface/60 p-7 backdrop-blur-md md:p-8"
+        >
           <div className="space-y-4">
-            <Field label={t.contact.fName} placeholder={t.contact.fNamePh} />
+            <Field
+              label={t.contact.fName}
+              name="name"
+              placeholder={t.contact.fNamePh}
+              autoComplete="name"
+              required
+            />
             <Field
               label={t.contact.fEmail}
+              name="email"
               placeholder={t.contact.fEmailPh}
               type="email"
+              autoComplete="email"
+              required
             />
-            <Field label={t.contact.fOrg} placeholder={t.contact.fOrgPh} />
+            <Field
+              label={t.contact.fOrg}
+              name="org"
+              placeholder={t.contact.fOrgPh}
+              autoComplete="organization"
+            />
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fRegion}</label>
-                <select className="mt-2 w-full appearance-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none focus:border-primary">
+                <label
+                  htmlFor={`${formId}-region`}
+                  className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90"
+                >
+                  {t.contact.fRegion}
+                </label>
+                <select
+                  id={`${formId}-region`}
+                  name="region"
+                  className="mt-2 w-full appearance-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none focus:border-primary"
+                >
                   {t.contact.regions.map((r) => (
                     <option key={r}>{r}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fService}</label>
+                <label
+                  htmlFor={`${formId}-service`}
+                  className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90"
+                >
+                  {t.contact.fService}
+                </label>
                 <select
+                  id={`${formId}-service`}
+                  name="service"
                   defaultValue=""
                   className="mt-2 w-full appearance-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none focus:border-primary"
                 >
@@ -1081,8 +1145,15 @@ function ContactCTA() {
               </div>
             </div>
             <div>
-              <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{t.contact.fContext}</label>
+              <label
+                htmlFor={`${formId}-context`}
+                className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90"
+              >
+                {t.contact.fContext}
+              </label>
               <textarea
+                id={`${formId}-context`}
+                name="context"
                 rows={2}
                 className="mt-2 w-full resize-none border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
                 placeholder={t.contact.fContextPh}
@@ -1090,7 +1161,7 @@ function ContactCTA() {
             </div>
           </div>
           <button
-            type="button"
+            type="submit"
             className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-primary font-mono text-[13px] font-semibold uppercase tracking-[0.22em] text-primary-foreground transition-all hover:brightness-110"
           >
             {t.contact.submit}
@@ -1103,19 +1174,35 @@ function ContactCTA() {
 
 function Field({
   label,
+  name,
   placeholder,
   type = "text",
+  autoComplete,
+  required = false,
 }: {
   label: string;
+  name: string;
   placeholder: string;
   type?: string;
+  autoComplete?: string;
+  required?: boolean;
 }) {
+  const id = useId();
   return (
     <div>
-      <label className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90">{label}</label>
+      <label
+        htmlFor={id}
+        className="block font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/90"
+      >
+        {label}
+      </label>
       <input
+        id={id}
+        name={name}
         type={type}
         placeholder={placeholder}
+        autoComplete={autoComplete}
+        required={required}
         className="mt-2 w-full border-b border-border-strong/55 bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-primary"
       />
     </div>
@@ -1145,9 +1232,7 @@ function Footer() {
                 <p className="eyebrow mb-5">{c.h}</p>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   {c.items.map((i) => (
-                    <li key={i} className="hover:text-foreground cursor-pointer">
-                      {i}
-                    </li>
+                    <li key={i}>{i}</li>
                   ))}
                 </ul>
               </div>
