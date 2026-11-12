@@ -80,9 +80,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       {
-        // Ícono en su versión sobre fondo claro: verde arriba a la derecha, azul abajo a la izquierda
+        // Ícono sobre fondo crema: azul arriba a la derecha, verde abajo a la izquierda
         rel: "icon",
-        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F2EA'/%3E%3Crect x='16' y='6' width='10' height='10' fill='%235AAE33'/%3E%3Crect x='6' y='16' width='10' height='10' fill='%230A1F3D'/%3E%3C/svg%3E",
+        href: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23F6F2EA'/%3E%3Crect x='16' y='6' width='10' height='10' fill='%230A1F3D'/%3E%3Crect x='6' y='16' width='10' height='10' fill='%235AAE33'/%3E%3C/svg%3E",
       },
     ],
   }),
