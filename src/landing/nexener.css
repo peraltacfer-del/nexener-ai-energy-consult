@@ -68,7 +68,7 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 .hero .eyebrow,.band .eyebrow{color:var(--paper)}
 .mark{flex:none;width:14px;height:14px;position:relative}
 .mark::before,.mark::after{content:"";position:absolute;width:7px;height:7px}
-.mark::before{right:0;top:0;background:var(--green)}
+.mark::before{right:0;top:0;background:var(--navy)}
 .mark::after{left:0;bottom:0;background:currentColor}
 
 /* Palabras que suben (títulos) */
@@ -107,7 +107,7 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 @keyframes redraw{0%{transform:scaleX(1);transform-origin:right}49%{transform:scaleX(0);transform-origin:right}50%{transform:scaleX(0);transform-origin:left}100%{transform:scaleX(1);transform-origin:left}}
 
 /* ---------- Logo ---------- */
-.logo{display:block;color:inherit;--sq-t:var(--green);--sq-b:currentColor}
+.logo{display:block;color:inherit;--sq-t:currentColor;--sq-b:var(--green)}
 .logo svg{width:100%;height:auto;overflow:visible}
 .logo .word{fill:currentColor;transition:fill .4s}
 .logo .sq-t{fill:var(--sq-t);transition:fill .4s}
@@ -149,7 +149,7 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 .menu-open .burger i:nth-child(2){top:21.5px;transform:rotate(-45deg)}
 
 .nav.is-solid{background:rgba(246,242,234,.92);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);color:var(--navy);height:68px;box-shadow:0 1px 0 var(--rule)}
-.nav.is-solid .logo{--sq-t:var(--green);--sq-b:var(--navy)}
+.nav.is-solid .logo{--sq-t:var(--navy);--sq-b:var(--green)}
 .nav.is-away{transform:translateY(-101%)}
 .js .nav{transform:translateY(-101%)}
 .js.is-ready .nav{transform:none;transition-delay:.35s}
@@ -371,7 +371,7 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 .hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%}
 .hero__cam::after{content:"";position:absolute;inset:0;background:var(--navy);mix-blend-mode:color;opacity:.06}
 .sect__lines{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
-.mark::after{background:var(--navy)}
+.mark::after{background:var(--green)}
 .on-dark .mark::before{background:var(--paper)}
 .on-dark .mark::after{background:var(--green)}
 .hero__body{grid-template-columns:minmax(0,1fr);gap:0}
