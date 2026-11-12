@@ -1,5 +1,5 @@
-/* Copia exacta del script de nexener-web-v3/index.html. Cambios: la función autoejecutable se exporta
-   como initNexener() para llamarla una vez montada la página, y las rutas "assets/" pasan a "/assets/". */
+/* NEXENER, página oficial v3: comportamiento de la página (idiomas, menú, video, carrusel, formulario).
+   Se ejecuta una vez montada la página, desde src/routes/index.tsx. */
 /* eslint-disable */
 export function initNexener() {
   'use strict';

@@ -6,8 +6,8 @@ import { initNexener } from "@/landing/nexener.js";
 
 /*
  * Página oficial NEXENER v3.
- * El contenido, el CSS y el script son copias exactas de nexener-web-v3/index.html
- * (ver nexener-web-v3/ESPECIFICACION.md). No se editan aquí: se editan en src/landing/.
+ * El contenido, el CSS y el script de la página están en src/landing/ y se editan allí.
+ * Video, fotos y tipografías: public/assets.
  */
 export const Route = createFileRoute("/")({
   head: () => ({

@@ -6,6 +6,5 @@ pnpm-lock.yaml
 package-lock.json
 bun.lock
 routeTree.gen.ts
-# Copia exacta de la página de referencia: no se reformatea
+# Página oficial: se mantiene con su formato original
 src/landing
-nexener-web-v3
