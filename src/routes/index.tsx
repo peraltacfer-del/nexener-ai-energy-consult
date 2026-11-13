@@ -11,7 +11,7 @@ import { initNexener } from "@/landing/nexener.js";
  */
 /* Dirección oficial del sitio (Cloudflare). Si más adelante se conecta nexener.com, cambiar solo aquí. */
 const SITE_URL = "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/";
-const SHARE_IMAGE = `${SITE_URL}og-nexener-icono.png`;
+const SHARE_IMAGE = `${SITE_URL}og-nexener-logo.png`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: SHARE_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "NEXENER" },
+      { property: "og:image:alt", content: "NEXENER · Energy & AI Advisory" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: SHARE_IMAGE },
     ],
