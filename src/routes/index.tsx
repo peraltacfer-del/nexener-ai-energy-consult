@@ -9,9 +9,9 @@ import { initNexener } from "@/landing/nexener.js";
  * El contenido, el CSS y el script de la página están en src/landing/ y se editan allí.
  * Video, fotos y tipografías: public/assets.
  */
-/* Dirección pública actual del sitio. Si se conecta nexener.com, cambiar aquí. */
-const SHARE_IMAGE =
-  "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og-nexener-icono.png";
+/* Dirección oficial del sitio (Cloudflare). Si más adelante se conecta nexener.com, cambiar solo aquí. */
+const SITE_URL = "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/";
+const SHARE_IMAGE = `${SITE_URL}og-nexener-icono.png`;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,7 +29,7 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Liderando la nueva era del sistema eléctrico.",
       },
-      { property: "og:url", content: "https://nexener.com/" },
+      { property: "og:url", content: SITE_URL },
       /* Imagen al compartir el enlace (LinkedIn, WhatsApp, X). URL absoluta: los sitios la piden así. */
       { property: "og:image", content: SHARE_IMAGE },
       { property: "og:image:width", content: "1200" },
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: SHARE_IMAGE },
     ],
     links: [
-      { rel: "canonical", href: "https://nexener.com/" },
+      { rel: "canonical", href: SITE_URL },
       { rel: "stylesheet", href: pageCss },
     ],
   }),
