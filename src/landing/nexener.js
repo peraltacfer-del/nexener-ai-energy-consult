@@ -16,67 +16,67 @@ export function initNexener() {
   var EN = {
     'skip': 'Skip to content',
     'nav.1': 'Services', 'nav.2': 'Who we serve', 'nav.3': 'Platforms', 'nav.4': 'About', 'nav.5': 'Contact',
-    'hero.h1': '<span class="ln">Clear decisions</span> <span class="ln">for an increasingly</span> <span class="ln">complex power system.</span>',
-    'hero.lede': 'We advise grid operators, regulators and power companies on markets, system planning and operation, with engineering and artificial intelligence.',
-    'hero.cta1': 'Talk to an expert', 'hero.cta2': 'See our services',
-    'p1.t': 'Markets and regulation', 'p1.d': 'Market design, simulation and regulatory analysis.',
-    'p2.t': 'Planning and operation', 'p2.d': 'Expansion, renewable integration and reliability.',
-    'p3.t': 'Analytics and AI', 'p3.d': 'Agents and automation for engineering teams.',
+    'hero.h1': '<span class="ln">Leading the new era</span> <span class="ln">of the power system.</span>',
+    'hero.lede': 'Strategic and technical advisory for system operators, regulators and power companies, built on specialised engineering and artificial intelligence.',
+    'hero.cta1': 'Talk to an expert',
+    'p1.t': 'Markets and regulation', 'p1.d': 'Design, simulation and regulatory analysis.',
+    'p2.t': 'Planning and operation', 'p2.d': 'Expansion, renewables and reliability.',
+    'p3.t': 'Analytics and AI', 'p3.d': 'Intelligent agents for engineering.',
     'fact': 'years of experience in the power systems of Chile, Canada and the United States.',
-    'hero.eye': 'Electricity sector consulting',
-    'st.eye': 'Who we are', 'st.h2': 'Electrical engineering and artificial intelligence, <em>in one firm.</em>',
-    'em.1': 'Market rules and mathematical optimisation in one environment.', 'em.2': 'AI agents that bid, assist and monitor competition.', 'em.3': 'Reproducible simulations to compare alternatives.',
+    'hero.eye': 'Energy &amp; AI Advisory',
+    'st.eye': 'Who we are', 'st.h2': 'Where power engineering meets <em>artificial intelligence.</em>',
+    'em.1': 'Integrated market rules and mathematical optimisation.', 'em.2': 'AI agents that bid, assist and oversee competition.', 'em.3': 'Reproducible scenarios to compare alternatives.',
     'ps.1': 'Model preparation and simulations.', 'ps.2': 'Analysis and validation of results.', 'ps.3': 'Technical documentation, always under expert control.',
-    'st.big': 'Renewables, storage and new markets are changing the power system faster than the tools used to decide about it. Nexener brings both disciplines together so that every technical and regulatory decision is made on evidence.',
-    'tr1.t': 'Electrical engineering', 'tr1.d': 'Planning, operation and markets, with more than 30 years of work on real systems.',
-    'tr2.t': 'Sector knowledge', 'tr2.d': 'We know how operators, regulators and companies decide, and what regulation asks of them.',
-    'tr3.t': 'Applied AI', 'tr3.d': 'Agents and models built for engineering problems, not adapted from another industry.',
+    'st.big': 'The energy transition demands faster, more precise decisions. We combine power engineering and artificial intelligence so that every technical and regulatory decision rests on evidence.',
+    'tr1.t': 'Electrical engineering', 'tr1.d': 'More than 30 years in planning, operation and markets of real power systems.',
+    'tr2.t': 'Sector insight', 'tr2.d': 'We understand how operators, regulators and companies decide, and what regulation requires.',
+    'tr3.t': 'Applied AI', 'tr3.d': 'Models and agents designed for power engineering, not adapted from other industries.',
     'sv.eye': 'Services',
     'sv.h2': 'What problem can we <em>solve together?</em>',
-    'sv.lede': 'We work on the technical and regulatory decisions where a mistake is expensive and data alone is not enough.',
+    'sv.lede': 'We focus on the highest-impact technical and regulatory decisions, where the cost of error is high.',
     'c.go': 'Let’s talk',
-    'c1.t': 'Electricity market design', 'c1.d': 'Market rules, ancillary services and remuneration mechanisms, tested in simulation before they are implemented.',
-    'c2.t': 'Grid planning and operation', 'c2.d': 'Expansion studies, integration of renewables and storage, system stability and reliability.',
-    'c3.t': 'Investment evaluation', 'c3.d': 'Generation, storage and transmission projects analysed under different regulatory and operating scenarios.',
-    'c4.t': 'Analytics and artificial intelligence', 'c4.d': 'Specialised agents that prepare models, run simulations and interpret results alongside your team.',
-    'c5.t': 'Implementation and training', 'c5.d': 'Integration with the tools your team already uses, training for specialists and technical support.',
+    'c1.t': 'Electricity market design', 'c1.d': 'Market rules, ancillary services and remuneration mechanisms, validated in simulation before implementation.',
+    'c2.t': 'Grid planning and operation', 'c2.d': 'Expansion, integration of renewables and storage, system stability and reliability.',
+    'c3.t': 'Investment evaluation', 'c3.d': 'Generation, storage and transmission, assessed across multiple regulatory and operating scenarios.',
+    'c4.t': 'Analytics and artificial intelligence', 'c4.d': 'Specialised agents that prepare models, run simulations and interpret results with your team.',
+    'c5.t': 'Implementation and training', 'c5.d': 'Integration with your existing tools, specialist training and ongoing technical support.',
     'sc.eye': 'Who we serve',
-    'sc.h2': 'For those who plan, operate and regulate <em>the power system.</em>',
-    'r1.t': 'System and market operators', 'r1.d': 'A laboratory to validate rules, products and ancillary services before taking them into real operation.',
+    'sc.h2': 'Serving those who plan, operate and regulate <em>the power system.</em>',
+    'r1.t': 'System and market operators', 'r1.d': 'Validation of rules, products and ancillary services before they go into operation.',
     'r2.t': 'Regulators and public bodies', 'r2.d': 'Reproducible simulations to compare regulatory alternatives with technical, economic and competition indicators.',
-    'r3.t': 'Electricity market companies', 'r3.d': 'Bidding strategies, portfolios and investments evaluated before capital is committed. For generators, storage, retailers and large consumers.',
-    'r4.t': 'Universities and research centres', 'r4.d': 'An environment to do research, validate methodologies and train specialists in electricity markets.',
+    'r3.t': 'Power sector companies', 'r3.d': 'Generators, retailers and large consumers: bidding strategies, portfolios and investments assessed before capital is committed.',
+    'r4.t': 'Universities and research centres', 'r4.d': 'Applied research, methodology validation and specialist training in electricity markets.',
     'pl.eye': 'Platforms',
-    'pl.h2': 'Our own technology, built from <em>electrical engineering.</em>',
-    'pl.lede': 'Our platforms turn specialised knowledge into tools a technical team can use every day.',
+    'pl.h2': 'Proprietary technology, built on <em>power engineering.</em>',
+    'pl.lede': 'We turn expert knowledge into everyday tools for technical teams.',
     'pl.dev': 'In development',
     'pl.ps': 'An engineering agent that assists specialists in power system studies.',
     'pl.tag': 'Day-ahead market',
-    'pl.desc': 'A platform to design, simulate and monitor competitive electricity markets before they are implemented.',
+    'pl.desc': 'A platform to design, simulate and monitor competitive electricity markets.',
     'ch.s': 'Supply', 'ch.d': 'Demand', 'ch.p': 'Marginal price', 'ch.h': 'Hour',
     'ag1.t': 'Representation agents', 'ag1.d': 'They bid for the participants absent from each session.',
     'ag2.t': 'Assistant agents', 'ag2.d': 'They help prepare bids. The decision stays with the person.',
     'ag3.t': 'Monitoring agents', 'ag3.d': 'They review market competition after each session.',
     'pl.go': 'Discover EMSIM',
     'bd.eye': 'How we work',
-    'bd.h2': 'Experience decides.<br>Artificial intelligence widens <em>what a team can analyse.</em>',
+    'bd.h2': 'Expert judgement decides.<br>Artificial intelligence <em>multiplies its reach.</em>',
     'f1.t': 'Quantitative evidence', 'f1.d': 'Every recommendation is backed by reproducible simulations.',
-    'f2.t': 'Expert oversight', 'f2.d': 'Agents assist. Critical decisions are made by specialists.',
-    'f3.t': 'Traceability', 'f3.d': 'Identifiable sources and results that can be audited.',
-    'f4.t': 'Technology independence', 'f4.d': 'We choose each AI model on performance, cost and security, without depending on one provider.',
+    'f2.t': 'Expert oversight', 'f2.d': 'AI assists; critical decisions are made by specialists.',
+    'f3.t': 'Traceability', 'f3.d': 'Identifiable sources and auditable results.',
+    'f4.t': 'Technology independence', 'f4.d': 'We select each AI model on performance, cost and security, with no vendor lock-in.',
     'tm.eye': 'Team',
-    'tm.h2': 'A multidisciplinary team for an industry <em>in transformation.</em>',
-    'tm.lede': 'Electrical engineering, data science and business development in one founding team.',
+    'tm.h2': 'Leadership with expertise in <em>energy, data and business.</em>',
+    'tm.lede': 'International experience in power systems and native capabilities in artificial intelligence.',
     'pp1.f': 'Power systems · Markets · Technology',
     'pp1.b': 'More than 30 years of experience in power system planning and operation, renewable energy and markets in Chile, Canada and the United States. Ph.D. in Electrical Engineering (Polytechnique Montréal) and MBA (ESADE).',
     'pp2.f': 'Artificial intelligence · Data science · Platforms',
     'pp2.b': 'Leads operations and the development of AI agents and analytical capabilities across Nexener’s platforms.',
     'pp3.f': 'Business development · Marketing · Partnerships',
     'pp3.b': 'Leads commercial strategy, client relationships and strategic partnerships. Business degree and Master’s in Marketing.',
-    'q.eye': 'What we believe', 'q.t': 'The energy transition will be built by combining people’s knowledge with artificial intelligence agents.',
+    'q.eye': 'What we believe', 'q.t': 'The energy transition will be led by those who combine human judgement with artificial intelligence.',
     'ct.eye': 'Contact',
-    'ct.h2': 'Let’s talk about your next <em>energy challenge.</em>',
-    'ct.lede': 'Tell us which decision you have ahead in power systems, markets or artificial intelligence.',
+    'ct.h2': 'Let’s discuss your next <em>energy challenge.</em>',
+    'ct.lede': 'Tell us about the decision you face in power systems, markets or artificial intelligence.',
     'fm.name': 'Name', 'fm.org': 'Company', 'fm.mail': 'Email', 'fm.topic': 'Topic', 'fm.other': 'Another topic', 'fm.msg': 'Message', 'fm.send': 'Send message',
     'fm.note': 'Your email application will open with the message ready to send.',
     'ft.site': 'Site', 'ft.write': 'Write to us', 'ft.credit': 'Photography: Pexels and Unsplash', 'ft.top': 'Back to top'
@@ -184,8 +184,10 @@ export function initNexener() {
     next();
   })();
   function paint() {
-    pauseBtn.setAttribute('aria-pressed', userPaused);
-    pauseBtn.setAttribute('aria-label', tr(userPaused ? 'a.play' : 'a.pause'));
+    if (pauseBtn) {
+      pauseBtn.setAttribute('aria-pressed', userPaused);
+      pauseBtn.setAttribute('aria-label', tr(userPaused ? 'a.play' : 'a.pause'));
+    }
     hero.classList.toggle('is-paused', userPaused);
   }
   function syncHero() {
@@ -194,7 +196,7 @@ export function initNexener() {
     video.muted = true;
     var p = video.play(); if (p && p.catch) p.catch(function () {});
   }
-  pauseBtn.addEventListener('click', function () { userPaused = !userPaused; syncHero(); });
+  if (pauseBtn) pauseBtn.addEventListener('click', function () { userPaused = !userPaused; syncHero(); });
   d.addEventListener('visibilitychange', syncHero);
   video.addEventListener('canplay', function () { if (video.paused) syncHero(); });
   /* Algunos navegadores solo permiten iniciar el video tras un primer gesto */
