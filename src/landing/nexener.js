@@ -254,7 +254,8 @@ export function initNexener() {
   /* ------------------------------------------------------------------
      6. Desplazamiento: barra de progreso, cámara, palabras, parallax
      ------------------------------------------------------------------ */
-  var heroMedia = $('.hero__media'), heroBody = $('.hero__body'), heroFoot = $('.hero__foot');
+  var heroMedia = $('.hero__media'), heroBody = $('.hero__body'), heroFoot = $('.hero__foot'), heroEye = $('.hero .eyebrow');
+  var dirAcc = 0; /* desplazamiento acumulado en la dirección actual (funciona también con scroll lento) */
   var pars = $$('[data-par]'), band = $('[data-band]'), ticking = false, vh = window.innerHeight;
   function frame(force) {
     ticking = false;
@@ -262,7 +263,18 @@ export function initNexener() {
     var hh = hero.offsetHeight;
     nav.classList.toggle('is-solid', y > hh - 90);
     if (!root.classList.contains('menu-open')) {
-      if (y > lastY + 4 && y > 220) nav.classList.add('is-away'); else if (y < lastY - 4 || y < 220) nav.classList.remove('is-away');
+      var dy = y - lastY;
+      if (dy && (dy > 0) !== (dirAcc > 0)) dirAcc = 0;
+      dirAcc += dy;
+      /* En la portada, la barra se retira cuando el texto llega a ~1 cm (40 px) de ella, para que nunca se superpongan.
+         Si el desplazamiento es rápido, se anticipa más (según la velocidad) para que termine de irse a tiempo. */
+      var lead = 40 + clamp(dy, 0, 120) * 4;
+      var clash = y > 0 && y < hh && heroEye && parseFloat(heroBody.style.opacity || 1) > .05 &&
+        heroEye.getBoundingClientRect().top < nav.offsetHeight + lead;
+      if (clash || (dirAcc > 12 && y > 220)) {
+        if (clash && dy > 80) nav.classList.add('is-snap'); /* desplazamiento muy brusco: se retira sin animación */
+        nav.classList.add('is-away');
+      } else if (dirAcc < -12 || y < 220) { nav.classList.remove('is-snap'); nav.classList.remove('is-away'); }
     }
     lastY = y;
     if (reduce) return;
