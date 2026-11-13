@@ -116,8 +116,8 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 .logo--dark{--sq-t:var(--paper);--sq-b:var(--green)}
 
 /* ---------- Intro ---------- */
-.intro{position:fixed;inset:0;z-index:150;background:var(--navy);display:grid;place-items:center;color:var(--paper);clip-path:polygon(0 0,100% 0,100% 100%,0 100%);transition:clip-path 1.15s var(--ease-io)}
-.intro .logo{width:min(62vw,400px);--sq-t:var(--paper);--sq-b:var(--green)}
+.intro{position:fixed;inset:0;z-index:150;background:var(--white);display:grid;place-items:center;color:var(--navy);clip-path:polygon(0 0,100% 0,100% 100%,0 100%);transition:clip-path 1.15s var(--ease-io)}
+.intro .logo{width:min(62vw,400px);--sq-t:var(--navy);--sq-b:var(--green)}
 .intro .word{opacity:0;animation:fadeIn .7s .1s ease forwards}
 .intro .sq-b,.intro .sq-t{transform-box:fill-box;transform-origin:center}
 .intro .sq-b{transform:scale(0);animation:sqIn .45s .35s var(--ease) forwards}
