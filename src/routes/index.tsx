@@ -11,7 +11,7 @@ import { initNexener } from "@/landing/nexener.js";
  */
 /* Dirección pública actual del sitio. Si se conecta nexener.com, cambiar aquí. */
 const SHARE_IMAGE =
-  "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og-nexener.png";
+  "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og-nexener-icono.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
       { property: "og:image", content: SHARE_IMAGE },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "NEXENER · Energy & AI Advisory" },
+      { property: "og:image:alt", content: "NEXENER" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: SHARE_IMAGE },
     ],
