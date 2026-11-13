@@ -73,12 +73,12 @@ export function initNexener() {
     'ct.h2': 'Let’s discuss your next <em>energy challenge.</em>',
     'ct.lede': 'Tell us about the decision you face in power systems, markets or artificial intelligence.',
     'fm.name': 'Name', 'fm.org': 'Company', 'fm.mail': 'Email', 'fm.topic': 'Topic', 'fm.other': 'Another topic', 'fm.msg': 'Message', 'fm.send': 'Send message',
-    'fm.note': 'Your email application will open with the message ready to send.',
+    'fm.note': 'We will only use your details to respond to your enquiry.',
     'ft.site': 'Site', 'ft.write': 'Write to us', 'ft.credit': 'Photography: Pexels and Unsplash', 'ft.top': 'Back to top'
   };
   var ATTR = {
-    es: { 'a.home': 'NEXENER, inicio', 'a.main': 'Principal', 'a.menu': 'Abrir menú', 'a.menuclose': 'Cerrar menú', 'a.menunav': 'Menú', 'a.pause': 'Pausar el video de fondo', 'a.play': 'Reanudar el video de fondo', 'a.prev': 'Anterior', 'a.next': 'Siguiente', 'a.chart': 'Pausar la simulación ilustrativa', 'a.chartplay': 'Reanudar la simulación ilustrativa', 'a.plot': 'Ejemplo ilustrativo: la curva de oferta y la demanda de cada hora determinan el precio marginal.', 'fm.err': 'Complete su nombre, un correo válido y el mensaje.', 'e.name': 'Escriba su nombre.', 'e.email': 'Escriba un correo válido.', 'e.message': 'Escriba su mensaje.', 'fm.ok': 'Listo. Revise su aplicación de correo y pulse enviar.', 'lang': 'Cambiar a inglés', 'subject': 'Consulta desde nexener.com' },
-    en: { 'a.home': 'NEXENER, home', 'a.main': 'Main', 'a.menu': 'Open menu', 'a.menuclose': 'Close menu', 'a.menunav': 'Menu', 'a.pause': 'Pause background video', 'a.play': 'Resume background video', 'a.prev': 'Previous', 'a.next': 'Next', 'a.chart': 'Pause the illustrative simulation', 'a.chartplay': 'Resume the illustrative simulation', 'a.plot': 'Illustrative example: the supply curve and each hour’s demand set the marginal price.', 'fm.err': 'Please fill in your name, a valid email and the message.', 'e.name': 'Enter your name.', 'e.email': 'Enter a valid email.', 'e.message': 'Write your message.', 'fm.ok': 'Done. Check your email application and press send.', 'lang': 'Switch to Spanish', 'subject': 'Enquiry from nexener.com' }
+    es: { 'a.home': 'NEXENER, inicio', 'a.main': 'Principal', 'a.menu': 'Abrir menú', 'a.menuclose': 'Cerrar menú', 'a.menunav': 'Menú', 'a.pause': 'Pausar el video de fondo', 'a.play': 'Reanudar el video de fondo', 'a.prev': 'Anterior', 'a.next': 'Siguiente', 'a.chart': 'Pausar la simulación ilustrativa', 'a.chartplay': 'Reanudar la simulación ilustrativa', 'a.plot': 'Ejemplo ilustrativo: la curva de oferta y la demanda de cada hora determinan el precio marginal.', 'fm.err': 'Complete su nombre, un correo válido y el mensaje.', 'e.name': 'Escriba su nombre.', 'e.email': 'Escriba un correo válido.', 'e.message': 'Escriba su mensaje.', 'fm.ok': 'Gracias. Recibimos su mensaje y le responderemos a la brevedad.', 'fm.sending': 'Enviando…', 'fm.fail': 'No pudimos enviar su mensaje. Escríbanos a info@nexener.com.', 'fm.mailok': 'Se abrió su aplicación de correo con el mensaje listo: pulse enviar.', 'lang': 'Cambiar a inglés', 'subject': 'Consulta desde nexener.com' },
+    en: { 'a.home': 'NEXENER, home', 'a.main': 'Main', 'a.menu': 'Open menu', 'a.menuclose': 'Close menu', 'a.menunav': 'Menu', 'a.pause': 'Pause background video', 'a.play': 'Resume background video', 'a.prev': 'Previous', 'a.next': 'Next', 'a.chart': 'Pause the illustrative simulation', 'a.chartplay': 'Resume the illustrative simulation', 'a.plot': 'Illustrative example: the supply curve and each hour’s demand set the marginal price.', 'fm.err': 'Please fill in your name, a valid email and the message.', 'e.name': 'Enter your name.', 'e.email': 'Enter a valid email.', 'e.message': 'Write your message.', 'fm.ok': 'Thank you. We have received your message and will reply shortly.', 'fm.sending': 'Sending…', 'fm.fail': 'We couldn’t send your message. Please write to info@nexener.com.', 'fm.mailok': 'Your email application has opened with the message ready: press send.', 'lang': 'Switch to Spanish', 'subject': 'Enquiry from nexener.com' }
   };
   var ES = {};
   $$('[data-t]').forEach(function (n) { if (!(n.dataset.t in ES)) ES[n.dataset.t] = n.innerHTML; });
@@ -369,9 +369,10 @@ export function initNexener() {
   rows.forEach(function (r, i) { ['mouseenter', 'focus', 'click'].forEach(function (ev) { r.addEventListener(ev, function () { rowOn(i); }); }); });
 
   /* ------------------------------------------------------------------
-     11. Formulario: abre el correo del visitante con el mensaje listo
+     11. Formulario: envía el mensaje al servidor (/api/contact → Supabase).
+         Si el servidor aún no está configurado, abre el correo del visitante como respaldo.
      ------------------------------------------------------------------ */
-  var form = $('#form'), note = $('#formNote'), msg = $('#f-msg');
+  var form = $('#form'), note = $('#formNote'), msg = $('#f-msg'), formT0 = Date.now();
   msg.addEventListener('input', function () { msg.style.height = 'auto'; msg.style.height = Math.min(320, msg.scrollHeight + 2) + 'px'; });
   function fieldState(el, ok) {
     var box = el.parentNode, err = $('.field__err', box);
@@ -389,10 +390,26 @@ export function initNexener() {
       fieldState(el, ok); if (!ok && !bad) bad = el;
     });
     if (bad) { note.textContent = tr('fm.err'); note.style.color = '#FFC9B8'; bad.focus(); return; }
-    var body = f.message.value.trim() + '\n\n' + f.name.value.trim() + (f.org.value.trim() ? '\n' + f.org.value.trim() : '') + '\n' + f.email.value.trim();
     var topic = f.topic.options[f.topic.selectedIndex].text;
-    window.location.href = 'mailto:info@nexener.com?subject=' + encodeURIComponent(tr('subject') + ': ' + topic) + '&body=' + encodeURIComponent(body);
-    note.textContent = tr('fm.ok'); note.style.color = '';
+    var btn = form.querySelector('[type=submit]');
+    if (btn.disabled) return;
+    function viaMail() {
+      var body = f.message.value.trim() + '\n\n' + f.name.value.trim() + (f.org.value.trim() ? '\n' + f.org.value.trim() : '') + '\n' + f.email.value.trim();
+      window.location.href = 'mailto:info@nexener.com?subject=' + encodeURIComponent(tr('subject') + ': ' + topic) + '&body=' + encodeURIComponent(body);
+      note.textContent = tr('fm.mailok'); note.style.color = '';
+    }
+    btn.disabled = true; note.textContent = tr('fm.sending'); note.style.color = '';
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: f.name.value, org: f.org.value, email: f.email.value, topic: topic, message: f.message.value, lang: lang, website: f.website.value, t: Date.now() - formT0 })
+    }).then(function (r) {
+      if (r.ok) { form.reset(); msg.style.height = ''; note.textContent = tr('fm.ok'); note.style.color = ''; }
+      else if (r.status === 503) viaMail();
+      else throw new Error('HTTP ' + r.status);
+    }).catch(function () {
+      note.textContent = tr('fm.fail'); note.style.color = '#FFC9B8';
+    }).then(function () { btn.disabled = false; });
   });
 
   /* ------------------------------------------------------------------

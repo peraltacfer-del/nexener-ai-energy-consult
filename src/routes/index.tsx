@@ -9,6 +9,10 @@ import { initNexener } from "@/landing/nexener.js";
  * El contenido, el CSS y el script de la página están en src/landing/ y se editan allí.
  * Video, fotos y tipografías: public/assets.
  */
+/* Dirección pública actual del sitio. Si se conecta nexener.com, cambiar aquí. */
+const SHARE_IMAGE =
+  "https://peraltacfer-del-nexener-ai-energy-consult.peraltac-fer.workers.dev/og-nexener.png";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -23,9 +27,16 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "NEXENER | Energy & AI Advisory" },
       {
         property: "og:description",
-        content: "Decisiones claras para un sistema eléctrico cada vez más complejo.",
+        content: "Liderando la nueva era del sistema eléctrico.",
       },
       { property: "og:url", content: "https://nexener.com/" },
+      /* Imagen al compartir el enlace (LinkedIn, WhatsApp, X). URL absoluta: los sitios la piden así. */
+      { property: "og:image", content: SHARE_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "NEXENER · Energy & AI Advisory" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: SHARE_IMAGE },
     ],
     links: [
       { rel: "canonical", href: "https://nexener.com/" },

@@ -493,3 +493,14 @@ h2 em,.display em{font-style:normal;color:var(--green-ink);display:inline-block}
 }
 @media print{.intro,.nav,.menu{display:none}}
 
+
+/* ---------- Párrafos justificados ----------
+   Justificado con división silábica según el idioma de la página (lang="es" / "en"),
+   para que no queden espacios grandes entre palabras. Los títulos y las tarjetas angostas de Servicios
+   no se justifican (en columnas tan estrechas se abren huecos entre palabras). */
+.lede,.trio p,.row p,.prod__desc,.four p,.person p.bio{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:7 3 3}
+
+/* Campo trampa del formulario: invisible para personas, lo completan solo los robots */
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.form{position:relative}
+.form [type=submit][disabled]{opacity:.6;cursor:progress}
